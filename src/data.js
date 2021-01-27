@@ -1,4 +1,4 @@
-dataset = {
+const dataset = {
     // Linear progression for 5 days
     "Book One": [
         {
@@ -134,3 +134,5 @@ dataset = {
         }
     ]
 }
+
+export default dataset;
