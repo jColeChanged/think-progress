@@ -15,6 +15,19 @@ class ThinkProgressBarRow extends React.Component {
 
 class ThinkProgress extends React.Component {
 
+    // Returns [windowStart, windowEnd] given a windowLength.
+    makeWindow(windowLength, windowUnits) {
+        windowUnits = "days";
+
+        if (windowUnits === "days") {
+            let currentDate = new Date();
+            let nDaysAgo = new Date();
+            nDaysAgo.setDate(currentDate.getDate() - windowLength);
+            return [nDaysAgo, currentDate];
+        }
+    }
+
+
     // A function which calculates the percentage of work which has been completed
     // from the start of a window until the end of the window. The progress prior to the
     // start of a window is the progress just before the window is reached.
@@ -25,32 +38,30 @@ class ThinkProgress extends React.Component {
             return 0;
         }
 
-        let currentDate = new Date();
-        let nDaysAgo = new Date();
-        nDaysAgo.setDate(currentDate.getDate() - windowLength);
+        let [windowStartDate, windowEndDate] = this.makeWindow(windowLength, "days");
 
         let isInWindow = ((entry) => {
             let date = datesetCreatedParser(entry.Created)
-            return nDaysAgo <= date && date <= currentDate;
+            return windowStartDate <= date && date <= windowEndDate;
         });
 
-        let windowStart = -1;
+        let windowStartIndex = -1;
         for (let i=0; i < entries.length; i++) {
             if (isInWindow(entries[i])) {
-                windowStart = i;
+                windowStartIndex = i;
                 break;
             }
         }
 
         // There is no data in the window so no progress was made.
-        if (windowStart === -1) {
+        if (windowStartIndex === -1) {
             return 0;
         }
 
-        let windowEnd = entries.length - 1;
-        for (let i=windowStart; i < entries.length; i++) {
+        let windowEndIndex = entries.length - 1;
+        for (let i=windowStartIndex; i < entries.length; i++) {
             if (!isInWindow(entries[i])) {
-                windowEnd = i-1;
+                windowEndIndex = i-1;
                 break;
             }
         }
@@ -60,9 +71,9 @@ class ThinkProgress extends React.Component {
         // the entry proceeding the window. Progress is therefore
         // window end entry progress minus the entry just before
         // window start.
-        let initialRowIndex = windowStart - 1
+        let initialRowIndex = windowStartIndex - 1
         let initiallyCompleted = initialRowIndex === 0 ? 0 : entries[initialRowIndex].Completed;
-        let finalCompleted = entries[windowEnd].Completed;
+        let finalCompleted = entries[windowEndIndex].Completed;
         return finalCompleted - initiallyCompleted;
     }
 
