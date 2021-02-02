@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import ThinkProgress from './ThinkProgress';
+import {ThinkProgress} from './ThinkProgress';
 
 function App() {
   return (
