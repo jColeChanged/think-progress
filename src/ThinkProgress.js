@@ -31,14 +31,14 @@ class ThinkProgress extends React.Component {
     // A function which calculates the percentage of work which has been completed
     // from the start of a window until the end of the window. The progress prior to the
     // start of a window is the progress just before the window is reached.
-    progressOverWindow(entries, windowLength) {
+    progressDuringWindow(entries, window) {
 
         // No progress over a window if the window is empty.
         if (entries.length === 0) {
             return 0;
         }
 
-        let [windowStartDate, windowEndDate] = this.makeWindow(windowLength, "days");
+        let [windowStartDate, windowEndDate] = window;
 
         let isInWindow = ((entry) => {
             let date = datesetCreatedParser(entry.Created)
@@ -81,7 +81,8 @@ class ThinkProgress extends React.Component {
     render() {
         const name = "Book One";
         const entries = dataset[name];
-        const recentProgress = this.progressOverWindow(entries, 28)
+        const window = this.makeWindow(28, "days");
+        const recentProgress = this.progressDuringWindow(entries, window);
         console.log(recentProgress);
 
         return <table>
