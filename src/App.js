@@ -1,11 +1,13 @@
 import logo from './logo.svg';
 import './App.css';
-import {ThinkProgress} from './ThinkProgress';
+import {ThinkProgressVisualization} from './ThinkProgressVisualization';
+import {ThinkProgressTable} from "./ThinkProgressTable";
 
 function App() {
   return (
     <div className="App">
-      <ThinkProgress />
+      <ThinkProgressVisualization />
+      <ThinkProgressTable />
     </div>
   );
 }

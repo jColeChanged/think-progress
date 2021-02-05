@@ -1,5 +1,5 @@
 
-import {progressDuringWindow} from './ThinkProgress';
+import {progressDuringWindow} from './ThinkProgressTable';
 import {dataset} from "./Data";
 
 it('test progress over window', () => {
