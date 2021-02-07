@@ -1,5 +1,5 @@
 import * as React from "react";
-import {dataset, datesetCreatedParser} from "./Data";
+import {datesetCreatedParser} from "./Data";
 
 class ThinkProgressBarRow extends React.Component {
 
@@ -79,7 +79,7 @@ function progressDuringWindow(entries, window) {
 class ThinkProgressTable extends React.Component {
     render() {
         const name = "Book One";
-        const entries = dataset[name];
+        const entries = this.props.dataset;
         const window = makeWindow(28, "days");
         const recentProgress = progressDuringWindow(entries, window);
         console.log(recentProgress);

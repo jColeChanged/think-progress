@@ -1,13 +1,11 @@
-import logo from './logo.svg';
 import './App.css';
-import {ThinkProgressVisualization} from './ThinkProgressVisualization';
-import {ThinkProgressTable} from "./ThinkProgressTable";
+import {dataset} from "./Data";
+import {ThinkProgress} from "./ThinkProgress";
 
 function App() {
   return (
     <div className="App">
-      <ThinkProgressVisualization />
-      <ThinkProgressTable />
+        <ThinkProgress dataset={dataset["Book One"]} />
     </div>
   );
 }

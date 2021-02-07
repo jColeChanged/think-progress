@@ -1,5 +1,5 @@
 import * as React from "react";
-import {dataset, datesetCreatedParser}  from "./Data";
+import {datesetCreatedParser}  from "./Data";
 import * as d3 from "d3";
 
 
@@ -10,7 +10,7 @@ class ThinkProgressVisualization extends React.Component {
     }
 
     drawChart() {
-        const data = dataset["Book One"].map((row) => row["Completed"] / row["Total"]);
+        const data = this.props.dataset.map((row) => row["Completed"] / row["Total"]);
         const w = 500;
         const h = 500;
         const svg = d3.select(this._rootNode)
