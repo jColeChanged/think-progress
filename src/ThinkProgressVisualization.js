@@ -10,24 +10,46 @@ class ThinkProgressVisualization extends React.Component {
     }
 
     drawChart() {
-        const data = this.props.dataset.map((row) => row["Completed"] / row["Total"]);
-        const w = 500;
-        const h = 500;
+        const dataset = this.props.dataset;
+        let total = dataset[0]["Total"];
+        //const data = this.props.dataset.map((row) => row["Completed"] / row["Total"]);
+        let options = {
+            width: 500,
+            height: 100,
+            value: {
+                x: d => datesetCreatedParser(d.Created),
+                y: d => d.Completed
+            },
+            style: {
+                stroke: "rgb(60, 120, 240)",
+                strokeWidth: 1
+            },
+        };
+
+        let yScale = d3.scaleLinear().domain([0, total]).range([options.height, 0]);
+
+        let xScale = d3.scaleLinear()
+            .domain(d3.extent(dataset, options.value.x))
+            .range([0, options.width]);
+
+        let line = d3
+            .line()
+            .x(d => xScale(options.value.x(d)))
+            .y(d => yScale(options.value.y(d)))
+
         const svg = d3.select(this._rootNode)
             .append("svg")
-            .attr("width", w)
-            .attr("height", h)
-            .style("margin-left", 100);
+            .attr("width", options.width)
+            .attr("height", options.height);
 
-        svg.selectAll("rect")
-            .data(data)
-            .enter()
-            .append("rect")
-            .attr("x", (d, i) => i * 70)
-            .attr("y", (d, i) => h - 10 * d)
-            .attr("width", 65)
-            .attr("height", (d, i) => d * 10)
-            .attr("fill", "green")
+        // Finally, draw the path object.
+        svg
+            .append("path")
+            .datum(dataset)
+            .attr("d", line)
+            .style("fill", "none")
+            .style("stroke", options.style.stroke)
+            .style("stroke-width", options.style.strokeWidth);
     }
 
     shouldComponentUpdate() {

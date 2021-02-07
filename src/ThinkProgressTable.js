@@ -40,7 +40,7 @@ function progressDuringWindow(entries, window) {
     let [windowStartDate, windowEndDate] = window;
 
     let isInWindow = ((entry) => {
-        let date = datesetCreatedParser(entry.Created)
+        let date = datesetCreatedParser(entry.Created);
         return windowStartDate <= date && date <= windowEndDate;
     });
 
