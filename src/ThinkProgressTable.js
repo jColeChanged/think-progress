@@ -26,6 +26,29 @@ function makeWindow(windowLength, windowUnits) {
     }
 }
 
+// Calculates an interpolation starting from the amount that has
+// been completed and continuing until the total completion.
+// For sequences which will take longer than one thousands units
+// of progress no interpolation is returned.
+function interpolation(start, end, delta) {
+    let progressNeeded = end - start;
+    if (progressNeeded <= 0) {
+        return null; // Estimate isn't needed, we're already done.
+    }
+
+    let deltaPercentage = delta / progressNeeded;
+    if (deltaPercentage <= 0.001) {
+        return "A very long time, if ever.";
+    }
+
+    let steps = [];
+    for (let progress=start; progress < end;) {
+        progress = end < progress + delta ? end : progress + delta;
+        steps.push(progress);
+    }
+    return steps;
+}
+
 
 // A function which calculates the percentage of work which has been completed
 // from the start of a window until the end of the window. The progress prior to the
@@ -106,4 +129,4 @@ class ThinkProgressTable extends React.Component {
     }
 }
 
-export {ThinkProgressTable, progressDuringWindow};
+export {ThinkProgressTable, progressDuringWindow, interpolation};
