@@ -2,23 +2,6 @@
 import {progressDuringWindow, interpolation} from './ThinkProgressTable';
 import {dataset} from "./Data";
 
-it('test reasonable progress interpolations', () => {
-    let start = 10;
-    let end = 50;
-    let delta = 10;
-    let expectedProgression = [20, 30, 40, 50];
-    let actualProgression = interpolation(start, end, delta);
-    expect(actualProgression).toEqual(expectedProgression);
-});
-
-it('test unreasonable progress', () => {
-    let start = 10;
-    let end = 50;
-    let delta = 0;
-    let expectedProgression = "A very long time, if ever.";
-    let actualProgression = interpolation(start, end, delta);
-    expect(actualProgression).toEqual(expectedProgression);
-});
 
 it('test progress over window', () => {
 
