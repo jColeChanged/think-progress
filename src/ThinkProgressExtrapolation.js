@@ -1,3 +1,4 @@
+import * as d3 from "d3";
 
 
 const EXTRAPOLATION_CASES = {
@@ -5,7 +6,6 @@ const EXTRAPOLATION_CASES = {
     "UNREASONABLE": 1,     // Won't finish for a very long time if ever.
     "POSSIBILITY": 2       // Includes a reasonable extrapolation.
 };
-
 
 
 class ThinkProgressExtrapolation {
@@ -35,7 +35,9 @@ class ThinkProgressExtrapolation {
             steps.push(progress);
         }
         this.ySteps = steps;
-        this.xSteps = steps;
+
+        let xNext = d3.timeDay.offset(xStart, 1)
+        this.xSteps = d3.timeDay.range(xNext, d3.timeDay.offset(xNext, steps.length), 1);
     }
 
     // Returns whether rendering an extrapolation is necessary.

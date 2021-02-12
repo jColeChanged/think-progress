@@ -1,6 +1,6 @@
 import {ThinkProgressExtrapolation} from './ThinkProgressExtrapolation';
 
-it('test reasonable progress interpolations', () => {
+it('test reasonable progress interpolations of progress', () => {
     let start = 10;
     let end = 50;
     let delta = 10;
@@ -11,6 +11,25 @@ it('test reasonable progress interpolations', () => {
     expect(extrapolation.hasProgressionExtrapolation()).toEqual(true);
     expect(expectedProgression).toEqual(extrapolation.extrapolatedProgression()[y]);
 });
+
+it('test reasonable progress interpolations of timeline', () => {
+    let start = 10;
+    let end = 50;
+    let delta = 10;
+    let expectedProgression = [
+        new Date(2021, 1, 2),
+        new Date(2021, 1, 3),
+        new Date(2021, 1, 4),
+        new Date(2021, 1, 5),
+    ];
+    let x = 0;
+    let extrapolation = new ThinkProgressExtrapolation("Reasonable Progression", new Date(2021, 1, 1), start, end, delta);
+
+    expect(extrapolation.needsProgressExtrapolation()).toEqual(true);
+    expect(extrapolation.hasProgressionExtrapolation()).toEqual(true);
+    expect(expectedProgression).toEqual(extrapolation.extrapolatedProgression()[x]);
+});
+
 
 it('test unreasonable progress', () => {
     let extrapolation = new ThinkProgressExtrapolation("Unreasonable Progress", new Date(), 10,50,0);
