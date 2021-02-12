@@ -14,10 +14,10 @@ class ThinkProgressExtrapolation {
     // been completed and continuing until the total completion.
     // For sequences which will take longer than one thousands units
     // of progress no interpolation is returned.
-    constructor(name, start, end, delta) {
+    constructor(name, xStart, yStart, yEnd, delta) {
         this.name = name;
 
-        let progressNeeded = end - start;
+        let progressNeeded = yEnd - yStart;
         if (progressNeeded <= 0) {
             this.case = EXTRAPOLATION_CASES.COMPLETED;
             return;
@@ -30,8 +30,8 @@ class ThinkProgressExtrapolation {
 
         this.case = EXTRAPOLATION_CASES.POSSIBILITY;
         let steps = [];
-        for (let progress=start; progress < end;) {
-            progress = end < progress + delta ? end : progress + delta;
+        for (let progress=yStart; progress < yEnd;) {
+            progress = yEnd < progress + delta ? yEnd : progress + delta;
             steps.push(progress);
         }
         this.ySteps = steps;
