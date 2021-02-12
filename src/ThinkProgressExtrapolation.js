@@ -34,7 +34,8 @@ class ThinkProgressExtrapolation {
             progress = end < progress + delta ? end : progress + delta;
             steps.push(progress);
         }
-        this.steps = steps;
+        this.ySteps = steps;
+        this.xSteps = steps;
     }
 
     // Returns whether rendering an extrapolation is necessary.
@@ -53,7 +54,7 @@ class ThinkProgressExtrapolation {
 
     // Returns an array of extrapolated progress steps.
     extrapolatedProgression() {
-        return this.steps;
+        return [this.xSteps, this.ySteps];
     }
 }
 

@@ -5,10 +5,11 @@ it('test reasonable progress interpolations', () => {
     let end = 50;
     let delta = 10;
     let expectedProgression = [20, 30, 40, 50];
+    let y = 1;
     let extrapolation = new ThinkProgressExtrapolation("Reasonable Progression", start, end, delta);
     expect(extrapolation.needsProgressExtrapolation()).toEqual(true);
     expect(extrapolation.hasProgressionExtrapolation()).toEqual(true);
-    expect(expectedProgression).toEqual(extrapolation.extrapolatedProgression());
+    expect(expectedProgression).toEqual(extrapolation.extrapolatedProgression()[y]);
 });
 
 it('test unreasonable progress', () => {
