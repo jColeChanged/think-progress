@@ -1,5 +1,4 @@
-
-import {progressDuringWindow, interpolation} from './ThinkProgressTable';
+import {ThinkProgressAnalysis} from './ThinkProgressAnalysis';
 import {dataset} from "./Data";
 
 
@@ -9,8 +8,10 @@ it('test progress over window', () => {
     let windowEnd = new Date("2021-1-3");
     let window = [windowStart, windowEnd];
     let entries = dataset['Book One'];
+
+    let analysis = new ThinkProgressAnalysis(entries, 1, "days");
     let expectedProgress = 30;
-    let actualProgress = progressDuringWindow(entries, window);
+    let actualProgress = analysis.progressDuringWindow(entries, window);
 
     expect(actualProgress).toEqual(expectedProgress);
 });
