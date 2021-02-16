@@ -3,10 +3,26 @@ import {datesetCreatedParser} from "./Data";
 class ThinkProgressAnalysis {
 
     constructor(entries, windowLength, windowUnits) {
-        const window = this.makeWindow(28, "days");
+        const window = this.makeWindow(windowLength, windowUnits);
         const recentProgress = this.progressDuringWindow(entries, window);
-        console.log(recentProgress);
+
+        this.name = windowLength
+        this.progressDelta = recentProgress;
+        this.endDate = entries[entries.length-1].Date;
+
+        if (entries.length === 0) {
+            this.completed = 0;
+            this.total = 0;
+            this.endDate = null;
+        }
+        else {
+            let lastEntry = entries[entries.length-1];
+            this.completed = lastEntry.Completed;
+            this.total = lastEntry.Total;
+            this.endDate = datesetCreatedParser(lastEntry.Created);
+        }
     }
+
     // Returns [windowStart, windowEnd] given a windowLength.
     makeWindow(windowLength, windowUnits) {
         windowUnits = "days";

@@ -20,7 +20,7 @@ class ThinkProgress extends React.Component {
             analysis.endDate,
             analysis.completed,
             analysis.total,
-            analysis.progessDelta
+            analysis.progressDelta
         ));
         return <div>
             <ThinkProgressVisualization dataset={this.props.dataset}/>
