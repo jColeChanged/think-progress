@@ -6,7 +6,7 @@ class ThinkProgressAnalysis {
         const window = this.makeWindow(windowLength, windowUnits);
         const recentProgress = this.progressDuringWindow(entries, window);
 
-        this.name = windowLength
+        this.name = windowLength;
         this.progressDelta = recentProgress;
         this.endDate = entries[entries.length-1].Date;
 
