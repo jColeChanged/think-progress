@@ -10,16 +10,22 @@ class ThinkProgressAnalysis {
         this.progressDelta = recentProgress;
         this.endDate = entries[entries.length-1].Date;
 
-        if (entries.length === 0) {
+        let latest = this.lastEntry(entries);
+        if (latest) {
+            this.completed = latest.Completed;
+            this.total = latest.Total;
+            this.endDate = datesetCreatedParser(latest.Created);
+        }
+        else {
             this.completed = 0;
             this.total = 0;
             this.endDate = null;
         }
-        else {
-            let lastEntry = entries[entries.length-1];
-            this.completed = lastEntry.Completed;
-            this.total = lastEntry.Total;
-            this.endDate = datesetCreatedParser(lastEntry.Created);
+    }
+
+    lastEntry(entries) {
+        if (entries.length !== 0) {
+            return entries[entries.length - 1];
         }
     }
 
