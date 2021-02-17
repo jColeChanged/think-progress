@@ -10,23 +10,32 @@ class ThinkProgressAnalysis {
         this.progressDelta = recentProgress;
         this.endDate = entries[entries.length-1].Date;
 
-        let latest = this.lastEntry(entries);
-        if (latest) {
-            this.completed = latest.Completed;
-            this.total = latest.Total;
-            this.endDate = datesetCreatedParser(latest.Created);
-        }
-        else {
-            this.completed = 0;
-            this.total = 0;
-            this.endDate = null;
-        }
+        let latest = this.getLastEntry(entries);
+        this.completed = this.getCompleted(latest);
+        this.total = this.getTotal(latest);
+        this.endDate = this.getLastUpdated(latest);
     }
 
-    lastEntry(entries) {
+    getLastEntry(entries) {
         if (entries.length !== 0) {
             return entries[entries.length - 1];
         }
+    }
+
+    // Returns the amount completed. If no entry provided, defaults to 0.
+    getCompleted(entry) {
+        return entry ? entry.Completed : 0;
+    }
+
+    // Returns the amount needed to complete all. If not entry provided, defaults to 0.
+    getTotal(entry) {
+        return entry ? entry.Total : 0;
+    }
+
+    // Returns the date that the last update was given. if no updates exists, defaults to null.
+    getLastUpdated(entry) {
+        return entry ? datesetCreatedParser(entry.Created) : null;
+
     }
 
     // Returns [windowStart, windowEnd] given a windowLength.
