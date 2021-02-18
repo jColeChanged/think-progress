@@ -27,5 +27,38 @@ it('test last entry is returned or null', () => {
     let actualEntryForEmpty = analysis.getLastEntry([]);
     let expectedEntryForEmpty = null;
     expect(actualEntryForEmpty).toEqual(expectedEntryForEmpty);
+});
 
+it('test completion fetch', () => {
+    let entries = dataset['Book One'];
+    let analysis = new ThinkProgressAnalysis(entries, 1, "days");
+    let actualCompleted = analysis.getCompleted(analysis.getLastEntry(entries));
+    let expectedCompleted = entries[entries.length-1].Completed;
+    expect(actualCompleted).toEqual(expectedCompleted);
+
+    let actualCompletedForEmpty = analysis.getCompleted(analysis.getLastEntry([]));
+    expect(actualCompletedForEmpty).toEqual(0);
+
+});
+
+it('test total fetch', () => {
+    let entries = dataset['Book One'];
+    let analysis = new ThinkProgressAnalysis(entries, 1, "days");
+    let actualTotal = analysis.getTotal(analysis.getLastEntry(entries));
+    let expectedTotal = entries[entries.length-1].Total;
+    expect(actualTotal).toEqual(expectedTotal);
+
+    let actualTotalForEmpty = analysis.getTotal(analysis.getLastEntry([]));
+    expect(actualTotalForEmpty).toEqual(0);
+
+});
+
+it('test date fetch', () => {
+    let entries = dataset['Book One'];
+    let analysis = new ThinkProgressAnalysis(entries, 1, "days");
+    let parsedDate = analysis.getLastUpdated(analysis.getLastEntry(entries));
+    expect(parsedDate).not.toBe(null);
+
+    let parsedDateForEmpty = analysis.getLastEntry([]);
+    expect(parsedDateForEmpty).toEqual(null);
 });
