@@ -17,9 +17,8 @@ class ThinkProgressAnalysis {
     }
 
     getLastEntry(entries) {
-        if (entries.length !== 0) {
-            return entries[entries.length - 1];
-        }
+        return (entries.length !== 0) ? entries[entries.length - 1] : null;
+
     }
 
     // Returns the amount completed. If no entry provided, defaults to 0.

@@ -15,3 +15,17 @@ it('test progress over window', () => {
 
     expect(actualProgress).toEqual(expectedProgress);
 });
+
+
+it('test last entry is returned or null', () => {
+    let entries = dataset['Book One'];
+    let analysis = new ThinkProgressAnalysis(entries, 1, "days");
+    let entry = analysis.getLastEntry(entries);
+    let expectedEntry = entries[entries.length-1];
+    expect(entry).toEqual(expectedEntry);
+
+    let actualEntryForEmpty = analysis.getLastEntry([]);
+    let expectedEntryForEmpty = null;
+    expect(actualEntryForEmpty).toEqual(expectedEntryForEmpty);
+
+});
