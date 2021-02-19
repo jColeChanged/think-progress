@@ -23,8 +23,8 @@ class ThinkProgress extends React.Component {
             analysis.progressDelta
         ));
         return <div>
-            <ThinkProgressVisualization dataset={this.props.dataset}/>
-            <ThinkProgressTable dataset={this.props.dataset}/>
+            <ThinkProgressVisualization dataset={this.props.dataset} extrapolations={extrapolations}/>
+            <ThinkProgressTable dataset={this.props.dataset} extrapolations={extrapolations}/>
         </div>
     }
 }
