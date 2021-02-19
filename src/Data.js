@@ -1,6 +1,9 @@
 import * as d3 from "d3";
 
-const datesetCreatedParser = d3.timeParse("%Y-%m-%d");
+const dateFormat = "%Y-%m-%d";
+const datasetCreatedTimeFormat = d3.timeFormat(dateFormat);
+const datesetCreatedParser = d3.timeParse(dateFormat);
+
 const dataset = {
     // Linear progression for 5 days
     "Book One": [
@@ -138,4 +141,4 @@ const dataset = {
     ]
 }
 
-export {dataset, datesetCreatedParser};
+export {dataset, datesetCreatedParser, datasetCreatedTimeFormat};

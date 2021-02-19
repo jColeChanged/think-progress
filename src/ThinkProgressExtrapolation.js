@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import {datasetCreatedTimeFormat} from "./Data";
 
 
 const EXTRAPOLATION_CASES = {
@@ -66,9 +67,9 @@ class ThinkProgressExtrapolation {
         let extrapolatedUpdates = [];
         for (let i=0; i<xSteps.length; i++) {
             extrapolatedUpdates.push({
-                "Created": this.xSteps[i],
+                "Created": datasetCreatedTimeFormat(xSteps[i]),
                 "Total": this.total,
-                "Completed": this.ySteps[i]
+                "Completed": ySteps[i]
             });
         }
 
