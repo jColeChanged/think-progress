@@ -28,6 +28,11 @@ class ThinkProgressVisualization extends React.Component {
 
         let yScale = d3.scaleLinear().domain([0, total]).range([options.height, 0]);
 
+
+        // TODO: Combine real and extrapolated data.
+        // The extent of the x domain includes both the real
+        // and extrapolated data. So we need to combine the
+        // real data with the extrapolated data.
         let xScale = d3.scaleLinear()
             .domain(d3.extent(dataset, options.value.x))
             .range([0, options.width]);
