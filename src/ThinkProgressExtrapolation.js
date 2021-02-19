@@ -16,6 +16,7 @@ class ThinkProgressExtrapolation {
     // of progress no interpolation is returned.
     constructor(name, xStart, yStart, yEnd, delta) {
         this.name = name;
+        this.total = yEnd;
 
         let progressNeeded = yEnd - yStart;
         if (progressNeeded <= 0) {
@@ -57,6 +58,21 @@ class ThinkProgressExtrapolation {
     // Returns an array of extrapolated progress steps.
     extrapolatedProgression() {
         return [this.xSteps, this.ySteps];
+    }
+
+    // Returns extrapolated progress in ProgressData format.
+    getData() {
+        let [xSteps, ySteps] = this.extrapolatedProgression();
+        let extrapolatedUpdates = [];
+        for (let i=0; i<xSteps.length; i++) {
+            extrapolatedUpdates.push({
+                "Created": this.xSteps[i],
+                "Total": this.total,
+                "Completed": this.ySteps[i]
+            });
+        }
+
+        return extrapolatedUpdates;
     }
 }
 
