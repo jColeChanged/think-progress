@@ -62,3 +62,10 @@ it('test date fetch', () => {
     let parsedDateForEmpty = analysis.getLastEntry([]);
     expect(parsedDateForEmpty).toEqual(null);
 });
+
+it('test date fetch', () => {
+    let entries = dataset['Book One'];
+    let analysis = new ThinkProgressAnalysis(entries, 1, "days");
+    let actualName = analysis.getName(10);
+    expect(actualName).toBe("last 10 days");
+});
