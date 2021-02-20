@@ -40,7 +40,7 @@ class ThinkProgressVisualization extends React.Component {
                 )
             ]
         );
-        let xScale = d3.scaleLinear()
+        let xScale = d3.scaleTime()
             .domain(d3.extent(allProgressions, options.value.x))
             .range([0, options.width]);
 
@@ -49,11 +49,16 @@ class ThinkProgressVisualization extends React.Component {
             .x(d => xScale(options.value.x(d)))
             .y(d => yScale(options.value.y(d)))
 
+        let xAxis = d3.axisBottom().scale(xScale);
+
+
         const svg = d3.select(this._rootNode)
             .append("svg")
             .attr("width", options.width)
             .attr("height", options.height);
 
+        svg.append("g")
+            .call(xAxis);
         // Finally, draw the path object.
         svg
             .append("path")
