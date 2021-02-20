@@ -15,7 +15,7 @@ class ThinkProgressVisualization extends React.Component {
         //const data = this.props.dataset.map((row) => row["Completed"] / row["Total"]);
         let options = {
             width: 500,
-            height: 100,
+            height: 500,
             value: {
                 x: d => datesetCreatedParser(d.Created),
                 y: d => d.Completed
@@ -24,9 +24,13 @@ class ThinkProgressVisualization extends React.Component {
                 stroke: "rgb(60, 120, 240)",
                 strokeWidth: 1
             },
+            margin: 50
         };
 
-        let yScale = d3.scaleLinear().domain([0, total]).range([options.height, 0]);
+        options.canvasWidth = options.width - options.margin * 2;
+        options.canvasHeight = options.height - options.margin * 2;
+
+        let yScale = d3.scaleLinear().domain([0, total]).range([options.canvasHeight, 0]);
 
 
         let allProgressions = d3.merge(
@@ -42,14 +46,16 @@ class ThinkProgressVisualization extends React.Component {
         );
         let xScale = d3.scaleTime()
             .domain(d3.extent(allProgressions, options.value.x))
-            .range([0, options.width]);
+            .range([0, options.canvasWidth]);
+
 
         let line = d3
             .line()
             .x(d => xScale(options.value.x(d)))
             .y(d => yScale(options.value.y(d)))
 
-        let xAxis = d3.axisBottom().scale(xScale);
+        let xAxis = d3.axisBottom()
+            .scale(xScale);
 
 
         const svg = d3.select(this._rootNode)
@@ -57,10 +63,13 @@ class ThinkProgressVisualization extends React.Component {
             .attr("width", options.width)
             .attr("height", options.height);
 
-        svg.append("g")
+        const canvas = svg.append("g")
+            .attr("transform", "translate(" + options.margin + "," + options.margin +")");
+
+        canvas.append("g")
             .call(xAxis);
         // Finally, draw the path object.
-        svg
+        canvas
             .append("path")
             .datum(dataset)
             .attr("d", line)
