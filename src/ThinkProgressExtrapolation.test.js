@@ -45,3 +45,13 @@ it('test not needing extrapolation cause finished', () => {
     expect(extrapolation.needsProgressExtrapolation()).toEqual(false);
     expect(extrapolation.hasProgressionExtrapolation()).toEqual(false);
 });
+
+
+// TODO: Create test which validates that progress extrapolation returns progress dataset.
+it('test getData return type', () => {
+    let start = 50;
+    let end = 50;
+    let delta = 10;
+    let extrapolation = new ThinkProgressExtrapolation("Finished Progression", new Date(), start, end, delta);
+    expect(true).toEqual(true);
+});
