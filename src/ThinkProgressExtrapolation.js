@@ -1,5 +1,5 @@
 import * as d3 from "d3";
-import {datasetCreatedTimeFormat} from "./Data";
+import {datasetCreatedTimeFormat} from "./ThinkProgressDataset";
 
 
 const EXTRAPOLATION_CASES = {

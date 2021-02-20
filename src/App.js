@@ -1,5 +1,5 @@
 import './App.css';
-import {dataset} from "./Data";
+import {dataset} from "./ThinkProgressDataset";
 import {ThinkProgress} from "./ThinkProgress";
 
 function App() {
