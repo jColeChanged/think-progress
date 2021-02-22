@@ -4,16 +4,17 @@ class ThinkProgressAnalysis {
 
     constructor(entries, windowLength, windowUnits) {
         const window = this.makeWindow(windowLength, windowUnits);
-        const recentProgress = this.progressDuringWindow(entries, window);
+        this.recentProgress = this.progressDuringWindow(entries, window);
+        this.progressDelta = this.recentProgress;
 
         this.name = this.getName(windowLength);
-        this.progressDelta = recentProgress;
         this.endDate = entries[entries.length-1].Date;
 
         let latest = this.getLastEntry(entries);
         this.completed = this.getCompleted(latest);
         this.total = this.getTotal(latest);
         this.endDate = this.getLastUpdated(latest);
+        this.windowLength = windowLength;
     }
 
     getName(windowLength) {
@@ -28,6 +29,11 @@ class ThinkProgressAnalysis {
     // Returns the amount completed. If no entry provided, defaults to 0.
     getCompleted(entry) {
         return entry ? entry.Completed : 0;
+    }
+
+    // Returns progress per day
+    getCompletedPerUnit() {
+        return this.recentProgress / this.windowLength;
     }
 
     // Returns the amount needed to complete all. If not entry provided, defaults to 0.
