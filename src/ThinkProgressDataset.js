@@ -4,6 +4,15 @@ const dateFormat = "%Y-%m-%d";
 const datasetCreatedTimeFormat = d3.timeFormat(dateFormat);
 const datesetCreatedParser = d3.timeParse(dateFormat);
 
+class ProgressDataset {
+
+    constructor(name, total, entries) {
+        this.name = name;
+        this.total = total;
+        this.entries = entries;
+    }
+}
+
 const dataset = {
     // Linear progression for 5 days
     "Book One": [
