@@ -46,6 +46,11 @@ const bookOneEntries = [
 
 
 let dataset = {};
+let bookOneProgressDataset = new ProgressDataset(
+    bookOneName,
+    bookOneTotal,
+    bookOneEntries
+);
 dataset[bookOneName] = bookOneEntries; // Linear progression for 5 days
 
 const bookTwoName = "Book Two";
@@ -103,7 +108,11 @@ const bookTwoEntries = [
     }
 ];
 dataset[bookTwoName] = bookTwoEntries // Linear progression for ten days
-
+let bookTwoProgressDataset = new ProgressDataset(
+    bookTwoName,
+    bookTwoTotal,
+    bookTwoEntries
+);
 
 const bookThreeName = "Book Three";
 const bookThreeTotal = 100;
@@ -140,6 +149,10 @@ const bookThreeEntries = [
     },
 ];
 dataset[bookThreeName] = bookThreeEntries;
-
+let bookThreeProgressDataset = new ProgressDataset(
+    bookThreeName,
+    bookThreeTotal,
+    bookThreeEntries
+);
 
 export {dataset, datesetCreatedParser, datasetCreatedTimeFormat};
