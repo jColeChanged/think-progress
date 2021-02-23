@@ -54,8 +54,8 @@ class ThinkProgressVisualization extends React.Component {
             .y(d => yScale(options.value.y(d)))
 
         let xAxis = d3.axisBottom()
-            .scale(xScale);
-
+            .scale(xScale)
+            .tickFormat(d3.timeFormat("%m-%d"));
 
         const svg = d3.select(this._rootNode)
             .append("svg")
