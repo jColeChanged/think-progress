@@ -33,15 +33,14 @@ class ThinkProgressVisualization extends React.Component {
         let yScale = d3.scaleLinear().domain([0, total]).range([options.canvasHeight, 0]);
 
 
+        let extrapolationsWithProgression = d3.filter(
+            this.props.extrapolations,
+            extrapolation => extrapolation.hasProgressionExtrapolation()
+        );
         let allProgressions = d3.merge(
             [
                 dataset,
-                d3.merge(
-                    d3.filter(
-                        this.props.extrapolations,
-                        extrapolation => extrapolation.hasProgressionExtrapolation()
-                    ).map(extrapolation => extrapolation.getData())
-                )
+                d3.merge(extrapolationsWithProgression.map(extrapolation => extrapolation.getData()))
             ]
         );
         let xScale = d3.scaleTime()
@@ -72,6 +71,14 @@ class ThinkProgressVisualization extends React.Component {
         canvas
             .append("path")
             .datum(dataset)
+            .attr("d", line)
+            .style("fill", "none")
+            .style("stroke", options.style.stroke)
+            .style("stroke-width", options.style.strokeWidth);
+
+        canvas
+            .append("path")
+            .data(extrapolationsWithProgression.map(extrapolation => extrapolation.getData()))
             .attr("d", line)
             .style("fill", "none")
             .style("stroke", options.style.stroke)
