@@ -1,5 +1,4 @@
 import * as React from "react";
-import {datesetCreatedParser}  from "./ThinkProgressDataset";
 import * as d3 from "d3";
 
 
@@ -17,7 +16,7 @@ class ThinkProgressVisualization extends React.Component {
             width: 500,
             height: 500,
             value: {
-                x: d => datesetCreatedParser(d.Created),
+                x: d => d.Created,
                 y: d => d.Completed
             },
             style: {

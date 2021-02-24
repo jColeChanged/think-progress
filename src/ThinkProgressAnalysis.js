@@ -1,4 +1,3 @@
-import {datesetCreatedParser} from "./ThinkProgressDataset";
 
 class ThinkProgressAnalysis {
 
@@ -43,7 +42,7 @@ class ThinkProgressAnalysis {
 
     // Returns the date that the last update was given. if no updates exists, defaults to null.
     getLastUpdated(entry) {
-        return entry ? datesetCreatedParser(entry.Created) : null;
+        return entry ? entry.Created : null;
 
     }
 
@@ -70,7 +69,7 @@ class ThinkProgressAnalysis {
         let [windowStartDate, windowEndDate] = window;
 
         let isInWindow = ((entry) => {
-            let date = datesetCreatedParser(entry.Created);
+            let date = entry.Created;
             return windowStartDate <= date && date <= windowEndDate;
         });
 

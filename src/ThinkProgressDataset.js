@@ -4,6 +4,11 @@ const dateFormat = "%Y-%m-%d";
 const datasetCreatedTimeFormat = d3.timeFormat(dateFormat);
 const datesetCreatedParser = d3.timeParse(dateFormat);
 
+function convertDateStringToDate(entry) {
+    entry.Created = datesetCreatedParser(entry.Created);
+    return entry;
+}
+
 class ProgressDataset {
 
     constructor(name, total, entries) {
@@ -11,6 +16,8 @@ class ProgressDataset {
         this.total = total;
         this.entries = entries;
     }
+
+
 }
 
 const bookOneName = "Book One";
@@ -41,7 +48,7 @@ const bookOneEntries = [
         "Completed": 50,
         "Total": bookOneTotal
     }
-];
+].map(convertDateStringToDate);
 
 
 
@@ -106,7 +113,7 @@ const bookTwoEntries = [
         "Completed": 100,
         "Total": bookTwoTotal
     }
-];
+].map(convertDateStringToDate);
 dataset[bookTwoName] = bookTwoEntries // Linear progression for ten days
 let bookTwoProgressDataset = new ProgressDataset(
     bookTwoName,
@@ -147,7 +154,7 @@ const bookThreeEntries = [
         "Completed": 64,
         "Total": bookThreeTotal
     },
-];
+].map(convertDateStringToDate);
 dataset[bookThreeName] = bookThreeEntries;
 let bookThreeProgressDataset = new ProgressDataset(
     bookThreeName,

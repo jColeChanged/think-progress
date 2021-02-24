@@ -1,10 +1,11 @@
 import * as React from "react";
+import {datasetCreatedTimeFormat} from "./ThinkProgressDataset";
 
 class ThinkProgressBarRow extends React.Component {
 
     render() {
         return <tr>
-            <td>{this.props.created}</td>
+            <td>{datasetCreatedTimeFormat(this.props.created)}</td>
             <td>{this.props.completed}</td>
             <td>{this.props.total}</td>
             <td>{this.props.completed / this.props.total * 100}%</td>
