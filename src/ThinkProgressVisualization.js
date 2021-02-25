@@ -36,52 +36,43 @@ class ThinkProgressVisualization extends React.Component {
             this.props.extrapolations,
             extrapolation => extrapolation.hasProgressionExtrapolation()
         );
-        let allProgressions = d3.merge(
-            [
-                dataset,
-                d3.merge(extrapolationsWithProgression.map(extrapolation => extrapolation.getData()))
-            ]
-        );
+        let extrapolatedProgressions = extrapolationsWithProgression.map(extrapolation => extrapolation.getData());
+        let allProgressions = [dataset].concat(extrapolatedProgressions);
+        let allProgressionValues = d3.merge(allProgressions);
         let xScale = d3.scaleTime()
-            .domain(d3.extent(allProgressions, options.value.x))
+            .domain(d3.extent(allProgressionValues, options.value.x))
             .range([0, options.canvasWidth]);
 
-
+        let colorScale = d3.scaleOrdinal(d3.schemeAccent);
         let line = d3
             .line()
             .x(d => xScale(options.value.x(d)))
-            .y(d => yScale(options.value.y(d)))
+            .y(d => yScale(options.value.y(d)));
 
         let xAxis = d3.axisBottom()
             .scale(xScale)
             .tickFormat(d3.timeFormat("%m-%d"));
 
-        const svg = d3.select(this._rootNode)
+        let svg = d3.select(this._rootNode)
             .append("svg")
             .attr("width", options.width)
             .attr("height", options.height);
 
-        const canvas = svg.append("g")
+        let canvas = svg.append("g")
             .attr("transform", "translate(" + options.margin + "," + options.margin +")");
 
         canvas.append("g")
             .call(xAxis);
-        // Finally, draw the path object.
-        canvas
+
+        let progressLines = canvas.selectAll("path.line").data(allProgressions);
+        progressLines
+            .enter()
             .append("path")
-            .datum(dataset)
+            .classed("line", true)
             .attr("d", line)
-            .style("fill", "none")
-            .style("stroke", options.style.stroke)
+            .style("stroke", (d, i) => colorScale(i))
             .style("stroke-width", options.style.strokeWidth);
 
-        canvas
-            .append("path")
-            .data(extrapolationsWithProgression.map(extrapolation => extrapolation.getData()))
-            .attr("d", line)
-            .style("fill", "none")
-            .style("stroke", options.style.stroke)
-            .style("stroke-width", options.style.strokeWidth);
     }
 
     shouldComponentUpdate() {
