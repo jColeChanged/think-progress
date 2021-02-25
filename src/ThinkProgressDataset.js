@@ -162,4 +162,4 @@ let bookThreeProgressDataset = new ProgressDataset(
     bookThreeEntries
 );
 
-export {dataset, datesetCreatedParser, datasetCreatedTimeFormat};
+export {bookOneProgressDataset, dataset, datesetCreatedParser, datasetCreatedTimeFormat};

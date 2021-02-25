@@ -1,11 +1,11 @@
 import './App.css';
-import {dataset} from "./ThinkProgressDataset";
+import {bookOneProgressDataset} from "./ThinkProgressDataset";
 import {ThinkProgress} from "./ThinkProgress";
 
 function App() {
   return (
     <div className="App">
-        <ThinkProgress dataset={dataset["Book One"]} />
+        <ThinkProgress dataset={bookOneProgressDataset} />
     </div>
   );
 }

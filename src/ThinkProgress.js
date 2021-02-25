@@ -8,7 +8,7 @@ import {ThinkProgressExtrapolation} from "./ThinkProgressExtrapolation";
 
 function daysSinceStart(dataset) {
     let now = new Date();
-    let start = dataset[0].Created;
+    let start = dataset.entries[0].Created;
     let numDaysSinceStart = d3.timeDay.count(start, now);
     return numDaysSinceStart;
 }
@@ -16,13 +16,13 @@ function daysSinceStart(dataset) {
 class ThinkProgress extends React.Component {
 
     render() {
-        let numDaysSinceStart = daysSinceStart(this.props.dataset);
-        console.log(numDaysSinceStart);
+        let dataset = this.props.dataset;
+        let numDaysSinceStart = daysSinceStart(dataset);
         let windowLengths = [1, 7, 30, 365].filter((windowLength) => windowLength < numDaysSinceStart);
         windowLengths.push(numDaysSinceStart);
 
         const analyses = windowLengths.map(
-            (windowLength) => new ThinkProgressAnalysis(this.props.dataset, windowLength, "days")
+            (windowLength) => new ThinkProgressAnalysis(dataset.entries, windowLength, "days")
         );
 
         const extrapolations = analyses.map((analysis) => new ThinkProgressExtrapolation(
@@ -33,8 +33,8 @@ class ThinkProgress extends React.Component {
             analysis.getCompletedPerUnit()
         ));
         return <div>
-            <ThinkProgressVisualization dataset={this.props.dataset} extrapolations={extrapolations}/>
-            <ThinkProgressTable dataset={this.props.dataset} extrapolations={extrapolations}/>
+            <ThinkProgressVisualization dataset={dataset.entries} extrapolations={extrapolations}/>
+            <ThinkProgressTable dataset={dataset.entries} extrapolations={extrapolations}/>
         </div>
     }
 }
