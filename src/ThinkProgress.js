@@ -6,13 +6,17 @@ import {ThinkProgressVisualization} from "./ThinkProgressVisualization";
 import {ThinkProgressAnalysis} from "./ThinkProgressAnalysis";
 import {ThinkProgressExtrapolation} from "./ThinkProgressExtrapolation";
 
+function daysSinceStart(dataset) {
+    let now = new Date();
+    let start = dataset[0].Created;
+    let numDaysSinceStart = d3.timeDay.count(start, now);
+    return numDaysSinceStart;
+}
 
 class ThinkProgress extends React.Component {
 
     render() {
-        let now = new Date();
-        let start = this.props.dataset[0].Created;
-        let numDaysSinceStart = d3.timeDay.count(start, now);
+        let numDaysSinceStart = daysSinceStart(this.props.dataset);
         console.log(numDaysSinceStart);
         let windowLengths = [1, 7, 30, 365].filter((windowLength) => windowLength < numDaysSinceStart);
         windowLengths.push(numDaysSinceStart);
