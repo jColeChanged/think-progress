@@ -20,7 +20,6 @@ class ThinkProgressVisualization extends React.Component {
                 y: d => d.Completed
             },
             style: {
-                stroke: "rgb(60, 120, 240)",
                 strokeWidth: 1
             },
             margin: 50
