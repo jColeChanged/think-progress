@@ -1,5 +1,5 @@
 import {ThinkProgressAnalysis} from './ThinkProgressAnalysis';
-import {dataset} from "./ThinkProgressDataset";
+import {bookOneProgressDataset} from "./ThinkProgressDataset";
 
 
 it('test progress over window', () => {
@@ -7,7 +7,7 @@ it('test progress over window', () => {
     let windowStart = new Date("2021-1-1");
     let windowEnd = new Date("2021-1-3");
     let window = [windowStart, windowEnd];
-    let entries = dataset['Book One'];
+    let entries = bookOneProgressDataset.entries;
 
     let analysis = new ThinkProgressAnalysis(entries, 1, "days");
     let expectedProgress = 30;
@@ -18,7 +18,7 @@ it('test progress over window', () => {
 
 
 it('test last entry is returned or null', () => {
-    let entries = dataset['Book One'];
+    let entries = bookOneProgressDataset.entries;
     let analysis = new ThinkProgressAnalysis(entries, 1, "days");
     let entry = analysis.getLastEntry(entries);
     let expectedEntry = entries[entries.length-1];
@@ -30,7 +30,7 @@ it('test last entry is returned or null', () => {
 });
 
 it('test completion fetch', () => {
-    let entries = dataset['Book One'];
+    let entries = bookOneProgressDataset.entries;
     let analysis = new ThinkProgressAnalysis(entries, 1, "days");
     let actualCompleted = analysis.getCompleted(analysis.getLastEntry(entries));
     let expectedCompleted = entries[entries.length-1].Completed;
@@ -42,7 +42,7 @@ it('test completion fetch', () => {
 });
 
 it('test total fetch', () => {
-    let entries = dataset['Book One'];
+    let entries = bookOneProgressDataset.entries;
     let analysis = new ThinkProgressAnalysis(entries, 1, "days");
     let actualTotal = analysis.getTotal(analysis.getLastEntry(entries));
     let expectedTotal = entries[entries.length-1].Total;
@@ -54,7 +54,7 @@ it('test total fetch', () => {
 });
 
 it('test date fetch', () => {
-    let entries = dataset['Book One'];
+    let entries = bookOneProgressDataset.entries;
     let analysis = new ThinkProgressAnalysis(entries, 1, "days");
     let parsedDate = analysis.getLastUpdated(analysis.getLastEntry(entries));
     expect(parsedDate).not.toBe(null);
@@ -64,7 +64,7 @@ it('test date fetch', () => {
 });
 
 it('test date fetch', () => {
-    let entries = dataset['Book One'];
+    let entries = bookOneProgressDataset.entries;
     let analysis = new ThinkProgressAnalysis(entries, 1, "days");
     let actualName = analysis.getName(10);
     expect(actualName).toBe("last 10 days");
