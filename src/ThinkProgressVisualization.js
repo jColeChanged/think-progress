@@ -73,6 +73,27 @@ class ThinkProgressVisualization extends React.Component {
             .style("stroke", (d, i) => colorScale(i))
             .style("stroke-width", options.style.strokeWidth);
 
+        // create legend
+        canvas.selectAll(".legendDot")
+            .data(allProgressions)
+            .enter()
+            .append("circle")
+            .attr("cx", 100)
+            .attr("cy", function(d,i){ return 100 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+            .attr("r", 7)
+            .style("fill", function(d, i){ return colorScale(i)})
+
+        // Add one dot in the legend for each name.
+        canvas.selectAll(".legendLabel")
+            .data(allProgressions)
+            .enter()
+            .append("text")
+            .attr("x", 120)
+            .attr("y", function(d,i){ return 100 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+            .style("fill", function(d, i){ return colorScale(i)})
+            .text(function(d){ return d})
+            .attr("text-anchor", "left")
+            .style("alignment-baseline", "middle")
     }
 
     shouldComponentUpdate() {
