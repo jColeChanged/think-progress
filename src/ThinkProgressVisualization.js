@@ -35,9 +35,11 @@ class ThinkProgressVisualization extends React.Component {
             this.props.extrapolations,
             extrapolation => extrapolation.hasProgressionExtrapolation()
         );
-        let extrapolatedProgressions = extrapolationsWithProgression.map(extrapolation => extrapolation.getData().entries);
-        let allProgressions = [dataset.entries].concat(extrapolatedProgressions);
-        let allProgressionValues = d3.merge(allProgressions);
+        let extrapolatedProgressions = extrapolationsWithProgression.map(extrapolation => extrapolation.getData());
+        let allProgressions = [dataset].concat(extrapolatedProgressions);
+        let allEntries = allProgressions.map((progressData) => progressData.entries);
+        let allProgressionValues = d3.merge(allEntries);
+
         let xScale = d3.scaleTime()
             .domain(d3.extent(allProgressionValues, options.value.x))
             .range([0, options.canvasWidth]);
@@ -63,7 +65,7 @@ class ThinkProgressVisualization extends React.Component {
         canvas.append("g")
             .call(xAxis);
 
-        let progressLines = canvas.selectAll("path.line").data(allProgressions);
+        let progressLines = canvas.selectAll("path.line").data(allEntries);
         progressLines
             .enter()
             .append("path")
@@ -93,7 +95,7 @@ class ThinkProgressVisualization extends React.Component {
             .attr("x", 120)
             .attr("y", function(d,i){ return 100 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
             .style("fill", function(d, i){ return colorScale(i)})
-            .text(function(d){ return d})
+            .text(function(d){ return d.name; })
             .attr("text-anchor", "left")
             .style("alignment-baseline", "middle")
     }
