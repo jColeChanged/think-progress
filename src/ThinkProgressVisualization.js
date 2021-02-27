@@ -78,6 +78,7 @@ class ThinkProgressVisualization extends React.Component {
             .data(allProgressions)
             .enter()
             .append("circle")
+            .classed('legendDot', true)
             .attr("cx", 100)
             .attr("cy", function(d,i){ return 100 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
             .attr("r", 7)
@@ -88,6 +89,7 @@ class ThinkProgressVisualization extends React.Component {
             .data(allProgressions)
             .enter()
             .append("text")
+            .classed("legendLabel", true)
             .attr("x", 120)
             .attr("y", function(d,i){ return 100 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
             .style("fill", function(d, i){ return colorScale(i)})
