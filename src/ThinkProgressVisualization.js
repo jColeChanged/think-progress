@@ -10,7 +10,7 @@ class ThinkProgressVisualization extends React.Component {
 
     drawChart() {
         const dataset = this.props.dataset;
-        let total = dataset[0]["Total"];
+        let total = dataset.total;
         //const data = this.props.dataset.map((row) => row["Completed"] / row["Total"]);
         let options = {
             width: 500,
@@ -36,7 +36,7 @@ class ThinkProgressVisualization extends React.Component {
             extrapolation => extrapolation.hasProgressionExtrapolation()
         );
         let extrapolatedProgressions = extrapolationsWithProgression.map(extrapolation => extrapolation.getData());
-        let allProgressions = [dataset].concat(extrapolatedProgressions);
+        let allProgressions = [dataset.entries].concat(extrapolatedProgressions);
         let allProgressionValues = d3.merge(allProgressions);
         let xScale = d3.scaleTime()
             .domain(d3.extent(allProgressionValues, options.value.x))
