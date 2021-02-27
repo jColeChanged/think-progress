@@ -39,4 +39,4 @@ class ThinkProgress extends React.Component {
     }
 }
 
-export {ThinkProgress};
+export {ThinkProgress, daysSinceStart};
