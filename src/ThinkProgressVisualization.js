@@ -35,7 +35,7 @@ class ThinkProgressVisualization extends React.Component {
             this.props.extrapolations,
             extrapolation => extrapolation.hasProgressionExtrapolation()
         );
-        let extrapolatedProgressions = extrapolationsWithProgression.map(extrapolation => extrapolation.getData());
+        let extrapolatedProgressions = extrapolationsWithProgression.map(extrapolation => extrapolation.getData().entries);
         let allProgressions = [dataset.entries].concat(extrapolatedProgressions);
         let allProgressionValues = d3.merge(allProgressions);
         let xScale = d3.scaleTime()

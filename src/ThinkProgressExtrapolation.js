@@ -1,4 +1,5 @@
 import * as d3 from "d3";
+import {ThinkProgressDataset} from "./ThinkProgressDataset";
 
 
 const EXTRAPOLATION_CASES = {
@@ -72,7 +73,13 @@ class ThinkProgressExtrapolation {
             });
         }
 
-        return extrapolatedUpdates;
+
+        let extrapolatedProgressDataset = new ThinkProgressDataset(
+            this.name,
+            this.total,
+            extrapolatedUpdates
+        );
+        return extrapolatedProgressDataset;
     }
 }
 
