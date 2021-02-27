@@ -72,8 +72,9 @@ class ThinkProgressVisualization extends React.Component {
             .style("stroke", (d, i) => colorScale(i))
             .style("stroke-width", options.style.strokeWidth);
 
+        let legend = canvas.append("g");
         // create legend
-        canvas.selectAll(".legendDot")
+        legend.selectAll(".legendDot")
             .data(allProgressions)
             .enter()
             .append("circle")
@@ -83,7 +84,7 @@ class ThinkProgressVisualization extends React.Component {
             .style("fill", function(d, i){ return colorScale(i)})
 
         // Add one dot in the legend for each name.
-        canvas.selectAll(".legendLabel")
+        legend.selectAll(".legendLabel")
             .data(allProgressions)
             .enter()
             .append("text")
