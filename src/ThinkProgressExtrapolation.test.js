@@ -1,4 +1,5 @@
 import {ThinkProgressExtrapolation} from './ThinkProgressExtrapolation';
+import {ThinkProgressDataset} from "./ThinkProgressDataset";
 
 it('test reasonable progress interpolations of progress', () => {
     let start = 10;
@@ -47,11 +48,11 @@ it('test not needing extrapolation cause finished', () => {
 });
 
 
-// TODO: Create test which validates that progress extrapolation returns progress dataset.
 it('test getData return type', () => {
-    let start = 50;
+    let start = 10;
     let end = 50;
     let delta = 10;
-    let extrapolation = new ThinkProgressExtrapolation("Finished Progression", new Date(), start, end, delta);
-    expect(true).toEqual(true);
+    let extrapolation = new ThinkProgressExtrapolation("Reasonable Progression", new Date(), start, end, delta);
+    let progress = extrapolation.getData();
+    expect(progress instanceof ThinkProgressDataset).toBe(true);
 });
