@@ -9,7 +9,7 @@ function convertDateStringToDate(entry) {
     return entry;
 }
 
-class ProgressDataset {
+class ThinkProgressDataset {
 
     constructor(name, total, entries) {
         this.name = name;
@@ -53,7 +53,7 @@ const bookOneEntries = [
 
 
 let dataset = {};
-let bookOneProgressDataset = new ProgressDataset(
+let bookOneProgressDataset = new ThinkProgressDataset(
     bookOneName,
     bookOneTotal,
     bookOneEntries
@@ -115,7 +115,7 @@ const bookTwoEntries = [
     }
 ].map(convertDateStringToDate);
 dataset[bookTwoName] = bookTwoEntries // Linear progression for ten days
-let bookTwoProgressDataset = new ProgressDataset(
+let bookTwoProgressDataset = new ThinkProgressDataset(
     bookTwoName,
     bookTwoTotal,
     bookTwoEntries
@@ -156,10 +156,10 @@ const bookThreeEntries = [
     },
 ].map(convertDateStringToDate);
 dataset[bookThreeName] = bookThreeEntries;
-let bookThreeProgressDataset = new ProgressDataset(
+let bookThreeProgressDataset = new ThinkProgressDataset(
     bookThreeName,
     bookThreeTotal,
     bookThreeEntries
 );
 
-export {bookOneProgressDataset, dataset, datesetCreatedParser, datasetCreatedTimeFormat};
+export {bookOneProgressDataset, dataset, datesetCreatedParser, datasetCreatedTimeFormat, ThinkProgressDataset};
