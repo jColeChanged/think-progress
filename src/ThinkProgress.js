@@ -26,7 +26,7 @@ class ThinkProgress extends React.Component {
         );
 
         const extrapolations = analyses.map((analysis) => new ThinkProgressExtrapolation(
-            analysis.name,
+            analysis.name + " extrapolation",
             analysis.endDate,
             analysis.completed,
             analysis.total,
