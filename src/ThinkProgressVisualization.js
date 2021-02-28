@@ -95,7 +95,7 @@ class ThinkProgressVisualization extends React.Component {
             .attr("x", 120)
             .attr("y", function(d,i){ return 100 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
             .style("fill", function(d, i){ return colorScale(i)})
-            .text(function(d){ return d.name; })
+            .text(function(d){ return !d.extrapolated ? "progress updates" : d.name; })
             .attr("text-anchor", "left")
             .style("alignment-baseline", "middle")
     }
