@@ -29,7 +29,9 @@ class ThinkProgressVisualization extends React.Component {
         options.canvasHeight = options.height - options.margin * 2;
 
         let yScale = d3.scaleLinear().domain([0, total]).range([options.canvasHeight, 0]);
-
+        let yScalePercentage = d3.scaleLinear()
+            .domain([100, 0])
+            .range([0, options.canvasHeight]);
 
         let extrapolationsWithProgression = d3.filter(
             this.props.extrapolations,
@@ -44,6 +46,8 @@ class ThinkProgressVisualization extends React.Component {
             .domain(d3.extent(allProgressionValues, options.value.x))
             .range([0, options.canvasWidth]);
 
+
+
         let colorScale = d3.scaleOrdinal(d3.schemeAccent);
         let line = d3
             .line()
@@ -53,6 +57,15 @@ class ThinkProgressVisualization extends React.Component {
         let xAxis = d3.axisBottom()
             .scale(xScale)
             .tickFormat(d3.timeFormat("%m-%d"));
+
+
+
+        let yAxisLeft = d3.axisLeft()
+            .scale(yScale);
+
+        let yAxisRight = d3.axisRight()
+            .scale(yScalePercentage)
+            .tickFormat((d) => d + "%");
 
         let svg = d3.select(this._rootNode)
             .append("svg")
@@ -64,6 +77,12 @@ class ThinkProgressVisualization extends React.Component {
 
         canvas.append("g")
             .call(xAxis);
+
+        canvas.append("g")
+            .call(yAxisLeft);
+
+        canvas.append("g")
+            .call(yAxisRight);
 
         let progressLines = canvas.selectAll("path.line").data(allEntries);
         progressLines
