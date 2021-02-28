@@ -33,7 +33,13 @@ class ThinkProgress extends React.Component {
             analysis.getCompletedPerUnit()
         ));
         return <div>
-            <ThinkProgressVisualization dataset={dataset} extrapolations={extrapolations}/>
+            <figure>
+                <figcaption>{dataset.name} Progress</figcaption>
+                <figure>
+                    <ThinkProgressVisualization dataset={dataset} extrapolations={extrapolations}/>
+                </figure>
+            </figure>
+
             <ThinkProgressTable dataset={dataset.entries} extrapolations={extrapolations}/>
         </div>
     }
