@@ -79,6 +79,7 @@ class ThinkProgressExtrapolation {
             this.total,
             extrapolatedUpdates
         );
+        extrapolatedProgressDataset.extrapolated = true;
         return extrapolatedProgressDataset;
     }
 }

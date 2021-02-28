@@ -15,9 +15,8 @@ class ThinkProgressDataset {
         this.name = name;
         this.total = total;
         this.entries = entries;
+        this.extrapolated = false;
     }
-
-
 }
 
 const bookOneName = "Book One";
