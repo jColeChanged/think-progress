@@ -70,19 +70,23 @@ class ThinkProgressVisualization extends React.Component {
         let svg = d3.select(this._rootNode)
             .append("svg")
             .attr("width", options.width)
-            .attr("height", options.height);
+            .attr("height", options.height)
+
 
         let canvas = svg.append("g")
             .attr("transform", "translate(" + options.margin + "," + options.margin +")");
 
         canvas.append("g")
-            .call(xAxis);
+            .call(xAxis)
+            .attr("transform", "translate(" + 0 + "," + options.canvasHeight +")");
+
 
         canvas.append("g")
             .call(yAxisLeft);
 
         canvas.append("g")
-            .call(yAxisRight);
+            .call(yAxisRight)
+            .attr("transform", "translate(" + options.canvasWidth + "," + 0+")");
 
         let progressLines = canvas.selectAll("path.line").data(allEntries);
         progressLines
