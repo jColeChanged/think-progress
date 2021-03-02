@@ -14,7 +14,7 @@ class ThinkProgressVisualization extends React.Component {
         //const data = this.props.dataset.map((row) => row["Completed"] / row["Total"]);
         let options = {
             width: 500,
-            height: 500,
+            height: 200,
             value: {
                 x: d => d.Created,
                 y: d => d.Completed
@@ -97,7 +97,9 @@ class ThinkProgressVisualization extends React.Component {
             .style("stroke", (d, i) => colorScale(i))
             .style("stroke-width", options.style.strokeWidth);
 
-        let legend = canvas.append("g");
+        let legend = canvas.append("g")
+            .attr("transform", "translate(" + 0 + "," + options.canvasHeight+")");
+
         // create legend
         legend.selectAll(".legendDot")
             .data(allProgressions)
@@ -105,7 +107,7 @@ class ThinkProgressVisualization extends React.Component {
             .append("circle")
             .classed('legendDot', true)
             .attr("cx", 100)
-            .attr("cy", function(d,i){ return 100 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+            .attr("cy", function(d,i){ return 0 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
             .attr("r", 7)
             .style("fill", function(d, i){ return colorScale(i)})
 
@@ -116,7 +118,7 @@ class ThinkProgressVisualization extends React.Component {
             .append("text")
             .classed("legendLabel", true)
             .attr("x", 120)
-            .attr("y", function(d,i){ return 100 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
+            .attr("y", function(d,i){ return 0 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
             .style("fill", function(d, i){ return colorScale(i)})
             .text(function(d){ return !d.extrapolated ? "progress updates" : d.name; })
             .attr("text-anchor", "left")
