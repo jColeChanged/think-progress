@@ -32,6 +32,13 @@ class ThinkProgress extends React.Component {
             analysis.total,
             analysis.getCompletedPerUnit()
         ));
+
+        let extrapolationsWithProgression = d3.filter(
+            extrapolations,
+            extrapolation => extrapolation.hasProgressionExtrapolation()
+        );
+        let extrapolatedProgressions = extrapolationsWithProgression.map(extrapolation => extrapolation.getData());
+
         return <div>
             <figure>
                 <figcaption>{dataset.name} Progress</figcaption>
@@ -40,7 +47,8 @@ class ThinkProgress extends React.Component {
                 </figure>
             </figure>
 
-            <ThinkProgressTable dataset={dataset.entries} extrapolations={extrapolations}/>
+            <ThinkProgressTable dataset={dataset.entries}/>
+            {extrapolatedProgressions.map(eds =>  <ThinkProgressTable dataset={eds.entries} />)}
         </div>
     }
 }
