@@ -94,6 +94,7 @@ class ThinkProgressVisualization extends React.Component {
             .append("path")
             .classed("line", true)
             .attr("d", line)
+            .style("fill", "none")
             .style("stroke", (d, i) => colorScale(i))
             .style("stroke-width", options.style.strokeWidth);
 

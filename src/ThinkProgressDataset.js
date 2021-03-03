@@ -15,6 +15,18 @@ class ThinkProgressDataset {
         this.name = name;
         this.total = total;
         this.entries = entries;
+
+        if (this.entries && this.entries.length) {
+            let lastEntry = this.entries[this.entries.length-1];
+            let currentDate = new Date();
+            if (datesetCreatedParser(datasetCreatedTimeFormat(currentDate)) > lastEntry.Created) {
+                this.entries.push({
+                    "Created": datesetCreatedParser(datasetCreatedTimeFormat(currentDate)),
+                    "Total": lastEntry.Total,
+                    "Completed": lastEntry.Completed
+                });
+            }
+        }
         this.extrapolated = false;
     }
 }
