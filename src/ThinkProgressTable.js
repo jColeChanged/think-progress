@@ -19,6 +19,7 @@ class ThinkProgressTable extends React.Component {
     render() {
 
         return <table>
+            <caption>{this.props.name}</caption>
             <thead>
             <tr>
                 <th>Date</th>
@@ -30,10 +31,10 @@ class ThinkProgressTable extends React.Component {
             <tbody>
             {this.props.dataset.map((row) => {
                 return <ThinkProgressBarRow
-                    created={row.Created}
-                    completed={row.Completed}
-                    total={row.Total}
-                />
+                        created={row.Created}
+                        completed={row.Completed}
+                        total={row.Total}
+                    />
             })}
             </tbody>
         </table>;
