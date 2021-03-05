@@ -18,6 +18,7 @@ class ThinkProgressExtrapolation {
     constructor(name, xStart, yStart, yEnd, delta) {
         this.name = name;
         this.total = yEnd;
+        this.yStart = yStart;
 
         let progressNeeded = yEnd - yStart;
         if (progressNeeded <= 0) {
@@ -65,6 +66,11 @@ class ThinkProgressExtrapolation {
     getData() {
         let [xSteps, ySteps] = this.extrapolatedProgression();
         let extrapolatedUpdates = [];
+        extrapolatedUpdates.push({
+            "Created": d3.timeDay.floor(new Date()),
+            "Total": this.total,
+            "Completed": this.yStart
+        });
         for (let i=0; i<xSteps.length; i++) {
             extrapolatedUpdates.push({
                 "Created": xSteps[i],
