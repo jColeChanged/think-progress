@@ -18,26 +18,32 @@ class ThinkProgressBarRow extends React.Component {
 class ThinkProgressTable extends React.Component {
     render() {
 
-        return <table>
-            <caption>{this.props.name}</caption>
-            <thead>
-            <tr>
-                <th>Date</th>
-                <th>Progress</th>
-                <th>Total</th>
-                <th>Percentage Complete</th>
-            </tr>
-            </thead>
-            <tbody>
-            {this.props.dataset.map((row) => {
-                return <ThinkProgressBarRow
-                        created={row.Created}
-                        completed={row.Completed}
-                        total={row.Total}
-                    />
-            })}
-            </tbody>
-        </table>;
+        return <div>
+
+            <table>
+                <caption>{this.props.name}</caption>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Progress *</th>
+                    <th>Total</th>
+                    <th>Percentage Complete *</th>
+                </tr>
+                </thead>
+                <tbody>
+                {this.props.dataset.map((row) => {
+                    return <ThinkProgressBarRow
+                            created={row.Created}
+                            completed={row.Completed}
+                            total={row.Total}
+                        />
+                })}
+                </tbody>
+            </table>
+            <p>
+                * These fields have been fixed to 2 digits of precision.
+            </p>
+        </div>;
     }
 }
 
