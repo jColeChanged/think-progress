@@ -41,7 +41,7 @@ class ThinkProgress extends React.Component {
 
         return <div>
             <figure>
-                <figcaption>{dataset.name} Progress</figcaption>
+                <figcaption><h1>{dataset.name} Progress</h1></figcaption>
                 <figure>
                     <ThinkProgressVisualization dataset={dataset} extrapolations={extrapolations}/>
                 </figure>
