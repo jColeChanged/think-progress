@@ -47,8 +47,6 @@ class ThinkProgressVisualization extends React.Component {
             .domain(d3.extent(allProgressionValues, options.value.x))
             .range([0, options.canvasWidth]);
 
-
-
         let colorScale = d3.scaleOrdinal(d3.schemeAccent);
         let line = d3
             .line()
@@ -58,8 +56,6 @@ class ThinkProgressVisualization extends React.Component {
         let xAxis = d3.axisBottom()
             .scale(xScale)
             .tickFormat(d3.timeFormat("%m-%d"));
-
-
 
         let yAxisLeft = d3.axisLeft()
             .scale(yScale);
