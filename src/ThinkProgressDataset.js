@@ -173,4 +173,4 @@ let bookThreeProgressDataset = new ThinkProgressDataset(
     bookThreeEntries
 );
 
-export {bookOneProgressDataset, dataset, datesetCreatedParser, datasetCreatedTimeFormat, ThinkProgressDataset};
+export {bookOneProgressDataset, bookTwoProgressDataset, bookThreeProgressDataset, dataset, datesetCreatedParser, datasetCreatedTimeFormat, ThinkProgressDataset};
