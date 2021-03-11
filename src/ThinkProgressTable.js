@@ -1,14 +1,18 @@
 import * as React from "react";
 import {datasetCreatedTimeFormat} from "./ThinkProgressDataset";
 
-class ThinkProgressBarRow extends React.Component {
+let roundOff = (num, places) => {
+    const x = Math.pow(10,places);
+    return Math.round(num * x) / x;
+};
 
+class ThinkProgressBarRow extends React.Component {
     render() {
         return <tr>
             <td>{datasetCreatedTimeFormat(this.props.created)}</td>
-            <td>{this.props.completed.toFixed(2)}</td>
+            <td>{roundOff(this.props.completed, 2)}</td>
             <td>{this.props.total}</td>
-            <td>{(this.props.completed / this.props.total * 100).toFixed(2)}%</td>
+            <td>{roundOff(this.props.completed / this.props.total * 100, 2)}%</td>
         </tr>;
     }
 }
@@ -17,17 +21,15 @@ class ThinkProgressBarRow extends React.Component {
 
 class ThinkProgressTable extends React.Component {
     render() {
-
         return <div>
-
             <table>
                 <caption>{this.props.name}</caption>
                 <thead>
                 <tr>
                     <th>Date</th>
-                    <th>Progress *</th>
+                    <th>Progress</th>
                     <th>Total</th>
-                    <th>Percentage Complete *</th>
+                    <th>% Completed</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -40,9 +42,9 @@ class ThinkProgressTable extends React.Component {
                 })}
                 </tbody>
             </table>
-            <p>
-                * These fields have been fixed to 2 digits of precision.
-            </p>
+            <small>
+                * Percentages in the table above are rounded to two decimal places.
+            </small>
         </div>;
     }
 }

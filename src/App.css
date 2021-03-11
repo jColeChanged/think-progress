@@ -22,6 +22,23 @@ h1 {
   line-height: 1;
 }
 
+caption {
+  font-weight: 400;
+  font-size: 2rem;
+  text-align: left;
+  margin-bottom: 1rem;
+}
+
+table {
+  font-family: "Trebuchet MS", "Gill Sans", "Gill Sans MT", sans-serif;
+  text-align: center;
+  margin-top: 1.5rem;
+}
+
+th {
+  margin: 30px;
+}
+
 figure {
   padding: 0;
   border: 0;
@@ -31,7 +48,6 @@ figure {
   margin: 0 0 3em 0;
 }
 
-table {
-  overflow-x: auto;
-  font-family: "Trebuchet MS", "Gill Sans", "Gill Sans MT", sans-serif;
-}
+
+
+
