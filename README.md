@@ -1,6 +1,41 @@
 # think-progress
 
-Reimagining progress bars in the light of the principles of good thinking and good map making. A progress bar for known out of known step counts with uniform step sizes which gives a better sense than a traditional progress bar of how long you have to go and how progress has been in the past.
+Reimagining progress bars in the light of the principles of good thinking 
+and good map making. A progress bar for known out of known step counts with 
+uniform step sizes which gives a better sense than a traditional progress 
+bar of how long you have to go and how progress has been in the past.
+
+Traditional progress bars, if I'm being generous since many of them actually 
+do far worse than this, tend to look something like this:
+
+> [XXXXX#####] (50% completed, 50% remaining)
+
+Take a moment to try to answer questions using the progress visualization 
+like:
+
+ - How much longer will it take to complete?
+ - What is the recent history of progress?
+ - How is progress momentum developing? It is getting faster? Slower?
+ - Should I hold my breath?
+
+If you had trouble answering those questions then it might be a bit more
+clear why the current state of the art in progress visualization design
+tends to celebrate not even attempting to give a means of inferring
+progression.
+
+![Game Loading Progress Visualization](docs/images/hearthstone_loading-2-1.gif)
+
+In contrast this project makes progress visualizations that give a good sense 
+for how things have been progressing by showing both the underlying progress 
+updates and the extrapolation of remaining updates as part of a timeseries.
+
+![Think Progress Example](docs/images/progress.png)
+
+It also takes a different approach to communicating how long things will take 
+to complete. Instead of giving only one estimate it renders multiple possible 
+extrapolated completion times and lets the viewers mind conclude which one is 
+the most reasonable.
+
 
 ## Available Scripts
 
