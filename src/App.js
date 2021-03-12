@@ -4,14 +4,16 @@ import {
     bookOneProgressDataset, bookTwoProgressDataset, bookThreeProgressDataset
 } from "./ThinkProgressDataset";
 import {ThinkProgress} from "./ThinkProgress";
+import {Container} from "react-bootstrap";
 
 function App() {
   return (
-    <div className="App">
-        <ThinkProgress dataset={bookOneProgressDataset} />
-        <ThinkProgress dataset={bookTwoProgressDataset} />
-        <ThinkProgress dataset={bookThreeProgressDataset} />
-    </div>
+      <Container>
+          <ThinkProgress dataset={bookOneProgressDataset} />
+          <ThinkProgress dataset={bookTwoProgressDataset} />
+          <ThinkProgress dataset={bookThreeProgressDataset} />
+      </Container>
+
   );
 }
 
