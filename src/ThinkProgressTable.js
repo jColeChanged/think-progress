@@ -1,5 +1,6 @@
 import * as React from "react";
 import {datasetCreatedTimeFormat} from "./ThinkProgressDataset";
+import {Table} from "react-bootstrap";
 
 let roundOff = (num, places) => {
     const x = Math.pow(10,places);
@@ -22,8 +23,9 @@ class ThinkProgressBarRow extends React.Component {
 class ThinkProgressTable extends React.Component {
     render() {
         return <div>
-            <table>
-                <caption>{this.props.name}</caption>
+            <h2>{this.props.name}</h2>
+
+            <Table responsive borderless>
                 <thead>
                 <tr>
                     <th>Date</th>
@@ -41,7 +43,7 @@ class ThinkProgressTable extends React.Component {
                         />
                 })}
                 </tbody>
-            </table>
+            </Table>
             <small>
                 * Percentages in the table above are rounded to two decimal places.
             </small>
