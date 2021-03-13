@@ -35,8 +35,9 @@ class ThinkProgressTable extends React.Component {
                 </tr>
                 </thead>
                 <tbody>
-                {this.props.dataset.map((row) => {
+                {this.props.dataset.map((row, index) => {
                     return <ThinkProgressBarRow
+                            key={index}
                             created={row.Created}
                             completed={row.Completed}
                             total={row.Total}

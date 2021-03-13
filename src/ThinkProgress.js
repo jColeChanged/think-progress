@@ -48,7 +48,7 @@ class ThinkProgress extends React.Component {
             </figure>
 
             <ThinkProgressTable name="actual progress" dataset={dataset.entries}/>
-            {extrapolatedProgressions.map(eds =>  <ThinkProgressTable name={eds.name} dataset={eds.entries} />)}
+            {extrapolatedProgressions.map(eds =>  <ThinkProgressTable key={eds.name} name={eds.name} dataset={eds.entries} />)}
         </div>
     }
 }

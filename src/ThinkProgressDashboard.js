@@ -9,7 +9,7 @@ function ThinkProgressDashboard(props) {
 
     return (
         <Container>
-            {filteredDatasets.map((dataset) => <ThinkProgress dataset={dataset} selected={selectionExists} />)}
+            {filteredDatasets.map((dataset) => <ThinkProgress key={dataset.id} dataset={dataset} selected={selectionExists} />)}
         </Container>
     );
 }
