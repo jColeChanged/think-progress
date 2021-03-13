@@ -3,9 +3,13 @@ import {Container} from "react-bootstrap";
 
 function ThinkProgressDashboard(props) {
     let datasets = props.datasets;
+    let selectedDataset = undefined;
+    let selectionExists = Boolean(selectedDataset);
+    let filteredDatasets = datasets.filter((dataset) => dataset.id === selectedDataset);
+
     return (
         <Container>
-            {datasets.map((dataset) => <ThinkProgress dataset={dataset} />)}
+            {filteredDatasets.map((dataset) => <ThinkProgress dataset={dataset} selected={selectionExists} />)}
         </Container>
     );
 }
