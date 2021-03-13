@@ -11,10 +11,11 @@ function convertDateStringToDate(entry) {
 
 class ThinkProgressDataset {
 
-    constructor(name, total, entries) {
+    constructor(name, total, entries, id) {
         this.name = name;
         this.total = total;
         this.entries = entries;
+        this.id = id;
 
         if (this.entries && this.entries.length) {
             let lastEntry = this.entries[this.entries.length-1];
@@ -67,7 +68,8 @@ let dataset = {};
 let bookOneProgressDataset = new ThinkProgressDataset(
     bookOneName,
     bookOneTotal,
-    bookOneEntries
+    bookOneEntries,
+    1
 );
 dataset[bookOneName] = bookOneEntries; // Linear progression for 5 days
 
@@ -129,7 +131,8 @@ dataset[bookTwoName] = bookTwoEntries // Linear progression for ten days
 let bookTwoProgressDataset = new ThinkProgressDataset(
     bookTwoName,
     bookTwoTotal,
-    bookTwoEntries
+    bookTwoEntries,
+    2
 );
 
 const bookThreeName = "Book Three";
@@ -170,7 +173,8 @@ dataset[bookThreeName] = bookThreeEntries;
 let bookThreeProgressDataset = new ThinkProgressDataset(
     bookThreeName,
     bookThreeTotal,
-    bookThreeEntries
+    bookThreeEntries,
+    3
 );
 
 export {bookOneProgressDataset, bookTwoProgressDataset, bookThreeProgressDataset, dataset, datesetCreatedParser, datasetCreatedTimeFormat, ThinkProgressDataset};
