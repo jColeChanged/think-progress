@@ -52,7 +52,9 @@ class ThinkProgress extends React.Component {
             </div>;
         }
         else {
-            return <ThinkProgressVisualization dataset={dataset} extrapolations={extrapolations}/>;
+            return <div onClick={this.props.onClick}>
+                <ThinkProgressVisualization dataset={dataset} extrapolations={extrapolations}/>
+            </div>;
         }
     }
 }
