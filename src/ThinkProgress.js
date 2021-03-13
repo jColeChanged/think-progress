@@ -39,17 +39,21 @@ class ThinkProgress extends React.Component {
         );
         let extrapolatedProgressions = extrapolationsWithProgression.map(extrapolation => extrapolation.getData());
 
-        return <div>
-            <figure>
-                <figcaption><h1>{dataset.name} Progress</h1></figcaption>
+        if (this.props.selected) {
+            return <div>
                 <figure>
-                    <ThinkProgressVisualization dataset={dataset} extrapolations={extrapolations}/>
+                    <figcaption><h1>{dataset.name} Progress</h1></figcaption>
+                    <figure>
+                        <ThinkProgressVisualization dataset={dataset} extrapolations={extrapolations}/>
+                    </figure>
                 </figure>
-            </figure>
-
-            <ThinkProgressTable name="actual progress" dataset={dataset.entries}/>
-            {extrapolatedProgressions.map(eds =>  <ThinkProgressTable key={eds.name} name={eds.name} dataset={eds.entries} />)}
-        </div>
+                <ThinkProgressTable name="actual progress" dataset={dataset.entries}/>
+                {extrapolatedProgressions.map(eds => <ThinkProgressTable key={eds.name} name={eds.name} dataset={eds.entries}/>)}
+            </div>;
+        }
+        else {
+            return <ThinkProgressVisualization dataset={dataset} extrapolations={extrapolations}/>;
+        }
     }
 }
 
