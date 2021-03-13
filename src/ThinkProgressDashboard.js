@@ -5,7 +5,7 @@ function ThinkProgressDashboard(props) {
     let datasets = props.datasets;
     let selectedDataset = undefined;
     let selectionExists = Boolean(selectedDataset);
-    let filteredDatasets = datasets.filter((dataset) => dataset.id === selectedDataset);
+    let filteredDatasets = datasets.filter((dataset) => !selectionExists || dataset.id === selectedDataset);
 
     return (
         <Container>
