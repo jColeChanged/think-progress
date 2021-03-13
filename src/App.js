@@ -3,17 +3,15 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import {
     bookOneProgressDataset, bookTwoProgressDataset, bookThreeProgressDataset
 } from "./ThinkProgressDataset";
-import {ThinkProgress} from "./ThinkProgress";
 import {Container} from "react-bootstrap";
+import ThinkProgressDashboard from "./ThinkProgressDashboard";
 
 function App() {
+    let datasets= [bookOneProgressDataset, bookTwoProgressDataset, bookThreeProgressDataset];
   return (
       <Container>
-          <ThinkProgress dataset={bookOneProgressDataset} />
-          <ThinkProgress dataset={bookTwoProgressDataset} />
-          <ThinkProgress dataset={bookThreeProgressDataset} />
+          <ThinkProgressDashboard datasets={datasets}/>
       </Container>
-
   );
 }
 
