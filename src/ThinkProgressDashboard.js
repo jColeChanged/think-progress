@@ -1,5 +1,5 @@
 import {ThinkProgress} from "./ThinkProgress";
-import {Container} from "react-bootstrap";
+import {Breadcrumb, Container} from "react-bootstrap";
 import {Component} from "react";
 
 class ThinkProgressDashboard extends Component {
@@ -14,9 +14,13 @@ class ThinkProgressDashboard extends Component {
         let selectedDataset = this.state.selectedDataset;
         let selectionExists = Boolean(selectedDataset);
         let filteredDatasets = datasets.filter((dataset) => !selectionExists || dataset.id === selectedDataset);
-
         return (
             <Container>
+                <Breadcrumb>
+                    <Breadcrumb.Item onClick={() => this.setSelectedDataset(null)}
+                                     href="#">Progress Dashboard</Breadcrumb.Item>
+                    {selectionExists ? <Breadcrumb.Item active>{filteredDatasets[0].name}</Breadcrumb.Item> : null}
+                </Breadcrumb>
                 {filteredDatasets.map((dataset) => <ThinkProgress key={dataset.id} dataset={dataset}
                                                                   selected={selectionExists} onClick={() => this.setSelectedDataset(dataset.id)}/>)}
             </Container>
