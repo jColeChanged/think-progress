@@ -9,6 +9,7 @@ class ThinkProgressVisualization extends React.Component {
     }
 
     drawChart() {
+        const preview = this.props.preview;
         const dataset = this.props.dataset;
         let total = dataset.total;
         //const data = this.props.dataset.map((row) => row["Completed"] / row["Total"]);
@@ -95,32 +96,44 @@ class ThinkProgressVisualization extends React.Component {
             .style("stroke", (d, i) => colorScale(i))
             .style("stroke-width", options.style.strokeWidth);
 
-        let legend = canvas.append("g")
-            .attr("transform", "translate(" + (options.canvasWidth + 50) + "," + 0 + ")");
+        if (!preview) {
+            let legend = canvas.append("g")
+                .attr("transform", "translate(" + (options.canvasWidth + 50) + "," + 0 + ")");
 
-        // create legend
-        legend.selectAll(".legendDot")
-            .data(allProgressions)
-            .enter()
-            .append("circle")
-            .classed('legendDot', true)
-            .attr("cx", 0)
-            .attr("cy", function(d,i){ return 0 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
-            .attr("r", 7)
-            .style("fill", function(d, i){ return colorScale(i)})
+            // create legend
+            legend.selectAll(".legendDot")
+                .data(allProgressions)
+                .enter()
+                .append("circle")
+                .classed('legendDot', true)
+                .attr("cx", 0)
+                .attr("cy", function (d, i) {
+                    return 0 + i * 25
+                }) // 100 is where the first dot appears. 25 is the distance between dots
+                .attr("r", 7)
+                .style("fill", function (d, i) {
+                    return colorScale(i)
+                })
 
-        // Add one dot in the legend for each name.
-        legend.selectAll(".legendLabel")
-            .data(allProgressions)
-            .enter()
-            .append("text")
-            .classed("legendLabel", true)
-            .attr("x", 10 )
-            .attr("y", function(d,i){ return 0 + i*25}) // 100 is where the first dot appears. 25 is the distance between dots
-            .style("fill", function(d, i){ return colorScale(i)})
-            .text(function(d){ return !d.extrapolated ? "progress updates" : d.name; })
-            .attr("text-anchor", "left")
-            .style("alignment-baseline", "middle")
+            // Add one dot in the legend for each name.
+            legend.selectAll(".legendLabel")
+                .data(allProgressions)
+                .enter()
+                .append("text")
+                .classed("legendLabel", true)
+                .attr("x", 10)
+                .attr("y", function (d, i) {
+                    return 0 + i * 25
+                }) // 100 is where the first dot appears. 25 is the distance between dots
+                .style("fill", function (d, i) {
+                    return colorScale(i)
+                })
+                .text(function (d) {
+                    return !d.extrapolated ? "progress updates" : d.name;
+                })
+                .attr("text-anchor", "left")
+                .style("alignment-baseline", "middle");
+        }
     }
 
     shouldComponentUpdate() {

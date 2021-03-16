@@ -44,7 +44,7 @@ class ThinkProgress extends React.Component {
                 <figure>
                     <figcaption><h1>{dataset.name} Progress</h1></figcaption>
                     <figure>
-                        <ThinkProgressVisualization dataset={dataset} extrapolations={extrapolations}/>
+                        <ThinkProgressVisualization preview={!this.props.selected} dataset={dataset} extrapolations={extrapolations}/>
                     </figure>
                 </figure>
                 <ThinkProgressTable name="actual progress" dataset={dataset.entries}/>
@@ -53,7 +53,7 @@ class ThinkProgress extends React.Component {
         }
         else {
             return <div onClick={this.props.onClick}>
-                <ThinkProgressVisualization dataset={dataset} extrapolations={extrapolations}/>
+                <ThinkProgressVisualization preview={!this.props.selected} dataset={dataset} extrapolations={extrapolations}/>
             </div>;
         }
     }
