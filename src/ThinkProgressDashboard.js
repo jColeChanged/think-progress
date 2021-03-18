@@ -1,5 +1,5 @@
 import {ThinkProgress} from "./ThinkProgress";
-import {Breadcrumb, Container} from "react-bootstrap";
+import {Breadcrumb, Card, CardGroup, Container} from "react-bootstrap";
 import {Component} from "react";
 
 class ThinkProgressDashboard extends Component {
@@ -14,6 +14,12 @@ class ThinkProgressDashboard extends Component {
         let selectedDataset = this.state.selectedDataset;
         let selectionExists = Boolean(selectedDataset);
         let filteredDatasets = datasets.filter((dataset) => !selectionExists || dataset.id === selectedDataset);
+        const sampleStyle = {
+            minWidth: "45%",
+            maxWidth: "45%",
+            border: 'none',
+            flexGrow: 1,
+        };
         return (
             <Container>
                 <Breadcrumb>
@@ -21,8 +27,14 @@ class ThinkProgressDashboard extends Component {
                                      href="#">Progress Dashboard</Breadcrumb.Item>
                     {selectionExists ? <Breadcrumb.Item active>{filteredDatasets[0].name}</Breadcrumb.Item> : null}
                 </Breadcrumb>
-                {filteredDatasets.map((dataset) => <ThinkProgress key={dataset.id} dataset={dataset}
-                                                                  selected={selectionExists} onClick={() => this.setSelectedDataset(dataset.id)}/>)}
+                <CardGroup>
+                {filteredDatasets.map((dataset) => (
+                    <Card style={sampleStyle}>
+                        <ThinkProgress key={dataset.id} dataset={dataset} selected={selectionExists} onClick={() => this.setSelectedDataset(dataset.id)}/>
+                    </Card>
+                ))}
+                </CardGroup>
+
             </Container>
         );
     }

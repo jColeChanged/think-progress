@@ -26,8 +26,9 @@ class ThinkProgressVisualization extends React.Component {
             },
             margin: 50
         };
+        options.svgWidth = this.props.preview ? 500 : options.width;
 
-        options.canvasWidth = (options.width / 2) - options.margin * 2;
+            options.canvasWidth = (options.width / 2) - options.margin * 2;
         options.canvasHeight = options.height - options.margin - options.paddingTop;
 
         let yScale = d3.scaleLinear().domain([0, total]).range([options.canvasHeight, 0]);
@@ -67,7 +68,7 @@ class ThinkProgressVisualization extends React.Component {
 
         let svg = d3.select(this._rootNode)
             .append("svg")
-            .attr("width", options.width)
+            .attr("width", options.svgWidth)
             .attr("height", options.height)
 
 
