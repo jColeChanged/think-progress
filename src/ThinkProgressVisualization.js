@@ -135,6 +135,7 @@ class ThinkProgressVisualization extends React.Component {
                 .attr("text-anchor", "left")
                 .style("alignment-baseline", "middle");
         }
+        // TODO: Move preview control to Dashboard by controlling viewport + text positioning.
         if (preview) {
             canvas.append("text")
                 .text(dataset.name)
