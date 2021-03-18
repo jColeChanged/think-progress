@@ -1,3 +1,8 @@
-
+.previewLink {
+    text-shadow: 1px 1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, -1px -1px 0 #fff;
+    border-bottom: solid 1px #ccc;
+    border: solid 1px #eee;
+    text-decoration: underline;
+}
 
 

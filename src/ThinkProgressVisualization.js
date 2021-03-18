@@ -28,7 +28,7 @@ class ThinkProgressVisualization extends React.Component {
         };
         options.svgWidth = this.props.preview ? 500 : options.width;
 
-            options.canvasWidth = (options.width / 2) - options.margin * 2;
+        options.canvasWidth = (options.width / 2) - options.margin * 2;
         options.canvasHeight = options.height - options.margin - options.paddingTop;
 
         let yScale = d3.scaleLinear().domain([0, total]).range([options.canvasHeight, 0]);
@@ -135,6 +135,14 @@ class ThinkProgressVisualization extends React.Component {
                 .attr("text-anchor", "left")
                 .style("alignment-baseline", "middle");
         }
+        if (preview) {
+            canvas.append("text")
+                .text(dataset.name)
+                .attr("weight", "bold")
+                .classed("previewLink", true)
+                .attr("transform", "translate(" + 10 + "," + 10 +")");
+        }
+
     }
 
     shouldComponentUpdate() {
