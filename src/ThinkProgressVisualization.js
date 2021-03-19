@@ -57,6 +57,7 @@ class ThinkProgressVisualization extends React.Component {
 
         let xAxis = d3.axisBottom()
             .scale(xScale)
+            .ticks(7)
             .tickFormat(d3.timeFormat("%m-%d"));
 
         let yAxisLeft = d3.axisLeft()
