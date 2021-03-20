@@ -63,7 +63,7 @@ wrong estimates.
 
 For another, even giving this estimate is an act of hard work. To give a 
 reasonable estimate we need to think about how progress has been, what 
-is remaining, and extrapolate. This involves math. This is involves 
+is remaining, and extrapolate. This involves math. Worse it involves 
 accounting for situations that are unrelated to the topic we are dealing 
 with that may come in to distract us. It isn't just difficult to get this 
 answer, but is a form of the halting problem. It is both hard to answer 
