@@ -11,7 +11,7 @@ progressions like those produced when reading a book. A book's
 length is known. The number of pages that have been read in that book is 
 also known.
 
-The progress visualizations produced here give communicate not just the 
+The progress visualizations produced here communicate not just the 
 current amount of progress, but the whole history of progress. It uses that 
 history to make educated guesses as to how progress will proceed in the 
 future. So in the case of reading a book you would be able to answer 
