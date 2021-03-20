@@ -1,14 +1,37 @@
 # think-progress
 
-Reimagining progress bars in the light of the principles of good thinking 
-and good map making. A progress bar for known out of known step counts with 
-uniform step sizes which gives a better sense than a traditional progress 
-bar of how long you have to go and how progress has been in the past.
+## What is this?
 
-Traditional progress bars, if I'm being generous since many of them actually 
-do far worse than this, tend to look something like this:
+This repository contains a reimagining of progress bars in the light of 
+the principles of good thinking and good map making.
 
-> [XXXXX#####] (50% completed, 50% remaining)
+This progress visualization is intended known out of known step counts with
+uniform step sizes. It isn't intended to be a visualization of all types of progress, but for
+progressions like those produced when reading a book. A book's 
+length is known. The number of pages that have been read in that book is 
+also known.
+
+The progress visualizations produced here give communicate not just the 
+current amount of progress, but the whole history of progress. It uses that 
+history to make educated guesses as to how progress will proceed in the 
+future. So in the case of reading a book you would be able to answer 
+questions like given I've been reading three pages a day I will finish the 
+book in thirty days.
+
+If that sounds a little confusing, just look at an example progress widget
+and things should become clear:
+
+```
+<ThinkProgress datset={dataset}>
+```
+
+![Think Progress Example](docs/images/progress.png)
+
+## Why
+
+Traditional progress bars tend to look something like this:
+
+> ![Think Progress Example](docs/images/average_progress.png)
 
 Take a moment to try to answer questions using the progress visualization 
 like:
@@ -25,16 +48,81 @@ progression.
 
 ![Game Loading Progress Visualization](docs/images/hearthstone_loading-2-1.gif)
 
-In contrast this project makes progress visualizations that give a good sense 
-for how things have been progressing by showing both the underlying progress 
-updates and the extrapolation of remaining updates as part of a timeseries.
+Implicit in their failure to communicate information about progress the 
+current standard for communicating progress is asking us to think about 
+progress for ourselves. However, there is reason we should hesitate to do 
+so.
 
-![Think Progress Example](docs/images/progress.png)
+For one, research shows that people tend to be pretty bad at estimating
+how long things will take. Even our worst cast estimates tend to be 
+optimistic. Moreover, this holds even when we know it is the case. Since 
+we know that this is an error we make frequently and one which is little 
+cured by experience we probably shouldn't be confidently producing 
+wrong estimates.
 
-It also takes a different approach to communicating how long things will take 
-to complete. Instead of giving only one estimate it renders multiple possible 
-extrapolated completion times and lets the viewers mind conclude which one is 
-the most reasonable.
+For another, even giving this estimate is an act of hard work. To give a 
+reasonable estimate we need to think about how progress has been, what 
+is remaining, and extrapolate. This involves math. This is involves 
+accounting for situations that are unrelated to the topic we are dealing 
+with that may come in to distract us. It isn't just difficult to get this 
+answer, but is a form of the halting problem. It is both hard to answer 
+and also impossible to have a correct answer.
+
+Theoretically, we can never guess correctly, showing the wisdom behind 
+a loading visualization that doesn't even pretend to help a person think.
+In practice information about when things will complete is actually valuable 
+enough that people really want it. So we have to think about it anyway.
+
+Or do we?
+
+> It is a profoundly erroneous truism, repeated by all copybooks and
+> by eminent people when they are making speeches, that we should
+> cultivate the habit of thinking of what we are doing. The precise
+> opposite is the case. Civilization advances by extending the number
+> of important operations which can be performed without thinking about
+> them.
+> - Alfred North Whitehead
+
+These progress visualizations try to take cues from lessons on good 
+visualization and good thinking found in books on the topic by Edward 
+Tufte. They do this with the intention of creating something which 
+does good thinking on behalf of the person using it.
+
+## Installation
+
+## Usage
+
+To create a dashboard which renders many progress visualizations:
+
+```
+import ThinkProgressDashboard from "./think/progress/ThinkProgressDashboard";
+
+function App() {
+  let datasets= [<your dataset>, ...];
+  return (
+      <ThinkProgressDashboard datasets={datasets}/>
+  );
+}
+
+export default App;
+```
+
+To create a single progress visualization:
+
+```
+import ThinkProgressDashboard from "./think/progress/ThinkProgressDashboard";
+
+function App() {
+  let datasets= [<your dataset>, ...];
+  return (
+      <ThinkProgress dataset={dataset} selected=true />
+  );
+}
+
+export default App;
+```
+
+
 
 
 ## Available Scripts
