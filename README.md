@@ -41,10 +41,11 @@ like:
  - How is progress momentum developing? It is getting faster? Slower?
  - Should I hold my breath?
 
-If you had trouble answering those questions then it might be a bit more
-clear why the current state of the art in progress visualization design
-tends to celebrate not even attempting to give a means of inferring
-progression.
+If you had trouble answering those questions then imagine your difficulty
+when giving a more modern approach to letting people know about progress. 
+A traditional time in which progress visualizations are shown to people 
+is when something is loading, but lately the trend is not even try to 
+communicate progress in these situations.
 
 ![Game Loading Progress Visualization](docs/images/hearthstone_loading-2-1.gif)
 
