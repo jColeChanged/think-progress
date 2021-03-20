@@ -1,3 +1,6 @@
+import './ThinkProgressDashboard.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import {ThinkProgress} from "./ThinkProgress";
 import {Breadcrumb, Card, CardGroup, Container} from "react-bootstrap";
 import {Component} from "react";
