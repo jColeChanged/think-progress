@@ -69,10 +69,11 @@ with that may come in to distract us. It isn't just difficult to get this
 answer, but is a form of the halting problem. It is both hard to answer 
 and also impossible to have a correct answer.
 
-Theoretically, we can never guess correctly, showing the wisdom behind 
-a loading visualization that doesn't even pretend to help a person think.
-In practice information about when things will complete is actually valuable 
-enough that people really want it. So we have to think about it anyway.
+Theoretically, we can never guarantee that we have the correct progress 
+extrapolation, showing the wisdom behind a loading visualization that 
+doesn't even pretend to help a person think. In practice information about 
+when things will complete is actually valuable enough that people really 
+want it. So we have to think about it anyway.
 
 Or do we?
 
