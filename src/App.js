@@ -1,7 +1,7 @@
 import {
     bookOneProgressDataset, bookTwoProgressDataset, bookThreeProgressDataset
-} from "./think/progress/ThinkProgressDataset";
-import ThinkProgressDashboard from "./think/progress/ThinkProgressDashboard";
+} from "./components/think/progress/ThinkProgressDataset";
+import ThinkProgressDashboard from "./components/think/progress/ThinkProgressDashboard";
 
 function App() {
   let datasets= [bookOneProgressDataset, bookTwoProgressDataset, bookThreeProgressDataset];
