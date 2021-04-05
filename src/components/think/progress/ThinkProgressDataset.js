@@ -30,6 +30,10 @@ class ThinkProgressDataset {
         }
         this.extrapolated = false;
     }
+
+    isEmpty() {
+        return this.entries.length === 0;
+    }
 }
 
 const bookOneName = "Book One";
@@ -177,4 +181,23 @@ let bookThreeProgressDataset = new ThinkProgressDataset(
     3
 );
 
-export {bookOneProgressDataset, bookTwoProgressDataset, bookThreeProgressDataset, dataset, datesetCreatedParser, datasetCreatedTimeFormat, ThinkProgressDataset};
+const bookFourEntries = [];
+const bookFourName = "Empty dataset";
+dataset[bookFourName] = bookFourEntries;
+let bookFourProgressDataaset = new ThinkProgressDataset(
+    bookFourName,
+    0,
+    [],
+    4
+);
+
+export {
+    bookFourProgressDataaset,
+    bookOneProgressDataset,
+    bookTwoProgressDataset,
+    bookThreeProgressDataset,
+    dataset,
+    datesetCreatedParser,
+    datasetCreatedTimeFormat,
+    ThinkProgressDataset
+};
