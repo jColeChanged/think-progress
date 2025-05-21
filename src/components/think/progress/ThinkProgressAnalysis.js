@@ -46,15 +46,28 @@ class ThinkProgressAnalysis {
 
     }
 
-    // Returns [windowStart, windowEnd] given a windowLength.
+    // Returns [windowStart, windowEnd] given a windowLength and units.
     makeWindow(windowLength, windowUnits) {
-        windowUnits = "days";
-        if (windowUnits === "days") {
-            let currentDate = new Date();
-            let nDaysAgo = new Date();
-            nDaysAgo.setDate(currentDate.getDate() - windowLength);
-            return [nDaysAgo, currentDate];
+        const currentDate = new Date();
+        const startDate = new Date(currentDate);
+
+        switch (windowUnits) {
+            case "weeks":
+                startDate.setDate(currentDate.getDate() - (windowLength * 7));
+                break;
+            case "months":
+                startDate.setMonth(currentDate.getMonth() - windowLength);
+                break;
+            case "years":
+                startDate.setFullYear(currentDate.getFullYear() - windowLength);
+                break;
+            case "days":
+            default:
+                startDate.setDate(currentDate.getDate() - windowLength);
+                break;
         }
+
+        return [startDate, currentDate];
     }
 
     // A function which calculates the percentage of work which has been completed

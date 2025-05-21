@@ -69,3 +69,32 @@ it('test date fetch', () => {
     let actualName = analysis.getName(10);
     expect(actualName).toBe("last 10 days");
 });
+
+it('makeWindow honors day units', () => {
+    let analysis = new ThinkProgressAnalysis([], 1, "days");
+    let [start, end] = analysis.makeWindow(3, "days");
+    let diff = Math.round((end - start) / (1000 * 60 * 60 * 24));
+    expect(diff).toBe(3);
+});
+
+it('makeWindow honors week units', () => {
+    let analysis = new ThinkProgressAnalysis([], 1, "days");
+    let [start, end] = analysis.makeWindow(2, "weeks");
+    let diff = Math.round((end - start) / (1000 * 60 * 60 * 24));
+    expect(diff).toBe(14);
+});
+
+it('makeWindow honors month units', () => {
+    let analysis = new ThinkProgressAnalysis([], 1, "days");
+    let [start, end] = analysis.makeWindow(1, "months");
+    // approximate month length 30 days as used in implementation
+    let diff = Math.round((end - start) / (1000 * 60 * 60 * 24));
+    expect(diff).toBe(30);
+});
+
+it('makeWindow honors year units', () => {
+    let analysis = new ThinkProgressAnalysis([], 1, "days");
+    let [start, end] = analysis.makeWindow(1, "years");
+    let diff = Math.round((end - start) / (1000 * 60 * 60 * 24));
+    expect(diff).toBe(365);
+});

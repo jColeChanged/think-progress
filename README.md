@@ -124,6 +124,18 @@ function App() {
 export default App;
 ```
 
+You can also analyze progress programmatically. The `ThinkProgressAnalysis` class
+accepts a window length and units. Supported units are `days`, `weeks`,
+`months` and `years`.
+
+```
+import { ThinkProgressAnalysis } from "./think/progress/ThinkProgressAnalysis";
+
+// Measure progress over the last week
+const analysis = new ThinkProgressAnalysis(dataset.entries, 1, "weeks");
+console.log(analysis.recentProgress);
+```
+
 
 
 
