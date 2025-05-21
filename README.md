@@ -5,8 +5,8 @@
 This repository contains a reimagining of progress bars in the light of 
 the principles of good thinking and good map making.
 
-This progress visualization is intended known out of known step counts with
-uniform step sizes. It isn't intended to be a visualization of all types of progress, but for
+This progress visualization is intended for progress with known step counts
+and uniform step sizes. It isn't intended to be a visualization of all types of progress, but for
 progressions like those produced when reading a book. A book's 
 length is known. The number of pages that have been read in that book is 
 also known.
@@ -22,7 +22,7 @@ If that sounds a little confusing, just look at an example progress widget
 and things should become clear:
 
 ```
-<ThinkProgress datset={dataset}>
+<ThinkProgress dataset={dataset}>
 ```
 
 ![Think Progress Example](docs/images/progress.png)
@@ -44,7 +44,7 @@ like:
 If you had trouble answering those questions then imagine your difficulty
 when giving a more modern approach to letting people know about progress. 
 A traditional time in which progress visualizations are shown to people 
-is when something is loading, but lately the trend is not even try to 
+is when something is loading, but lately the trend is not even to try to
 communicate progress in these situations.
 
 ![Game Loading Progress Visualization](docs/images/hearthstone_loading-2-1.gif)
@@ -55,7 +55,7 @@ progress for ourselves. However, there is reason we should hesitate to do
 so.
 
 For one, research shows that people tend to be pretty bad at estimating
-how long things will take. Even our worst cast estimates tend to be 
+how long things will take. Even our worst case estimates tend to be
 optimistic. Moreover, this holds even when we know it is the case. Since 
 we know that this is an error we make frequently and one which is little 
 cured by experience we probably shouldn't be confidently producing 
