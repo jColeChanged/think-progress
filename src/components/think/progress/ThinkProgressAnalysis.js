@@ -7,7 +7,7 @@ class ThinkProgressAnalysis {
         this.progressDelta = this.recentProgress;
 
         this.name = this.getName(windowLength);
-        this.endDate = entries[entries.length-1].Date;
+        this.endDate = entries[entries.length-1].Created;
 
         let latest = this.getLastEntry(entries);
         this.completed = this.getCompleted(latest);
