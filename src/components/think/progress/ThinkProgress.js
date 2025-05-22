@@ -17,9 +17,16 @@ function daysSinceStart(dataset) {
 }
 
 const DAILY_WINDOW = 1;
-const WEEKLY_WINDOW = 7;
-const MONTHLY_WINDOW = 30;
-const YEARLY_WINDOW = 365;
+const WEEKLY_WINDOW = 1;
+const MONTHLY_WINDOW = 1;
+const YEARLY_WINDOW = 1;
+
+const UNIT_TO_DAYS = {
+    "days": 1,
+    "weeks": 7,
+    "months": 30,
+    "years": 365
+};
 
 
 class ThinkProgress extends React.Component {
@@ -32,17 +39,19 @@ class ThinkProgress extends React.Component {
         // length we don't give an estimate. We also don't try if we don't have
         // any data.
         let numDaysSinceStart = daysSinceStart(dataset);
-        let windowLengthsToAnalyze = [
-            numDaysSinceStart,
-            DAILY_WINDOW,
-            WEEKLY_WINDOW,
-            MONTHLY_WINDOW,
-            YEARLY_WINDOW
+        let windowsToAnalyze = [
+            {length: numDaysSinceStart, units: "days"},
+            {length: DAILY_WINDOW, units: "days"},
+            {length: WEEKLY_WINDOW, units: "weeks"},
+            {length: MONTHLY_WINDOW, units: "months"},
+            {length: YEARLY_WINDOW, units: "years"}
         ].filter(
-            (windowLength) => !dataset.isEmpty() && windowLength <= numDaysSinceStart
+            (window) =>
+                !dataset.isEmpty() &&
+                UNIT_TO_DAYS[window.units] * window.length <= numDaysSinceStart
         );
-        const analyses = windowLengthsToAnalyze.map(
-            (windowLength) => new ThinkProgressAnalysis(dataset.entries, windowLength, "days")
+        const analyses = windowsToAnalyze.map(
+            (window) => new ThinkProgressAnalysis(dataset.entries, window.length, window.units)
         );
 
         const extrapolations = analyses.map((analysis) => new ThinkProgressExtrapolation(
